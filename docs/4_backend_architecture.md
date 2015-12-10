@@ -4,6 +4,7 @@ This document contains detailed information about the backend architecture of Ne
 We are using Django web framework (version 1.9)
 
 ---
+
 ##Apps
 ###Users
 - Login (/users/login)
@@ -16,8 +17,8 @@ We are using Django web framework (version 1.9)
 - Edit (/contests/edit)
 - Delete (/contests/delete)
 
-###Applications
-- Apply (/contests/{contest_id}/apply)
+###Submissions
+- Posting a submission (/contests/{contest_id}/apply)
 - Submissions (/contests/{contest_id}/submissions)
 - Individual submission (/contests/{contest_id}/submissions/{submission_id})
 
