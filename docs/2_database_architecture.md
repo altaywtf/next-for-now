@@ -35,7 +35,7 @@ This document contains the database architecture & schemas of Next For Now.
 - id
 - owner -> (hasOne) from Contest Owners
 - title
-- category -> (hasTooMany) from Categories
+- category -> Selected from a list of Categories
 - description
 - details
 - image
@@ -55,12 +55,6 @@ This document contains the database architecture & schemas of Next For Now.
 - files -> uploaded by Applicant
 - feedback -> (hasOne) given by Contest Owners
 - date_posted
-
-###Contest Categories
-- id
-- title
-- contests -> (hasTooMany) from Contests
-
 
 ---
 
