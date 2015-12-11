@@ -60,7 +60,7 @@ This document contains the database architecture & schemas of Next For Now.
 
 
 ###Schema Drawings
-Will be added soon.
 
+![alt text](assets/img/NextForNowER.png "E.R Diagram")
 
 ---
