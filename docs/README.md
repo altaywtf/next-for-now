@@ -2,6 +2,8 @@
 
 Welcome to the documentation page of **Next For Now**.
 
+[00. Installation and Contribution](0_installation_and_contribution.md)
+
 [01. Information Architecture](1_information_architecture.md)
 
 [02. Database Architecture & Schemas](2_database_architecture.md)
