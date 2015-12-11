@@ -63,4 +63,7 @@ This document contains the database architecture & schemas of Next For Now.
 
 ![alt text](assets/img/NextForNowER.png "E.R Diagram")
 
+####Additional Info
+Existing Django models for users will be used. Additional fields for users will be added via profile models.
+
 ---
