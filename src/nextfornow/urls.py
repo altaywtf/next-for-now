@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from nfn_user import urls as nfn_user_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^signup/', include(nfn_user_urls)),
     url(r'^contests/', include('nfn_contests.urls')),
     url(r'^signup/', include('nfn_user.urls'))
+
 ]
