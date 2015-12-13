@@ -10,13 +10,9 @@ class C_Owner(models.Model):
 	company_name = models.CharField('Company Name', max_length=200)
 	company_address = models.TextField('Company Address')
 
-<<<<<<< HEAD
 	def __unicode__(self):
 		return self.company_name
 
-
-=======
->>>>>>> origin/master
 class UserModelForm(ModelForm):
 	class Meta:
 		model = User
