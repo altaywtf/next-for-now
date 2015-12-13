@@ -15,8 +15,9 @@
 - $ cd <env.name>
 - $ source bin/activate (or $ workon <env.name> if you're using virtualenvwrapper)
 
-####Clone the project repository.
+####Clone the project repository. 
 - $ git clone https://github.com/zebrasinpyjamas/nextfornow.git
+- *It doesn't matter where you clone it. Just don't forget to activate your virtualenv when you are working on the project.*
 
 ####Go into src (source code) folder.
 - $ cd nextfornow/src

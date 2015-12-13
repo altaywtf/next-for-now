@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nfn_user',
+    'nfn_contests',
 ]
 
 MIDDLEWARE_CLASSES = [
