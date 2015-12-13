@@ -20,10 +20,8 @@ from nfn_user import urls as nfn_user_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-<<<<<<< HEAD
     url(r'^signup/', include(nfn_user_urls))
-=======
     url(r'^contests/', include('nfn_contests.urls')),
     url(r'^signup/', include('nfn_user.urls'))
->>>>>>> 8c057138d5db62836a3be0c616a66b999300f984
+
 ]
