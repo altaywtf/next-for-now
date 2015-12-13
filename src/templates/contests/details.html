@@ -1,0 +1,14 @@
+<h1>Contest Title: {{ contest.title }}</h1>
+<p>Contest Owner: {{ contest.owner }}</p>
+
+<hr>
+
+<p>Submissions</p>
+{% if contest.submission_set %}
+	<ul>
+	{% for submission in contest.submission_set.all %}
+		<li><b>Submitted by</b> {{ submission.applicant }}<br>
+		<b>On</b> {{ submission.date_posted }}</li>
+	{% endfor %}
+	</ul>
+{% endif %}
