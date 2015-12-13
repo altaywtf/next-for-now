@@ -6,20 +6,14 @@ from django.utils import timezone
 from nfn_user.models import C_Owner
 
 class Contest(models.Model):
-	Design = 'DES'
-	Development = 'DEV'
-	Business = 'BUS'
-	Engineering = 'ENG'
-	MediaProduction = 'MED'
-	CreativeWriting = 'CRE'
-
+	
 	category_choices = (
-		(Design, 'Design'),
-		(Development, 'Development'),
-		(Business, 'Business'),
-		(Engineering, 'Engineering'),
-		(MediaProduction, 'Media Production'),
-		(CreativeWriting, 'Creative Writing'),
+		('Design', 'Design'),
+		('Development', 'Development'),
+		('Business', 'Business'),
+		('Engineering', 'Engineering'),
+		('MediaProduction', 'Media Production'),
+		('CreativeWriting', 'Creative Writing'),
 	)
 
 	owner = models.CharField('Contest Owner', max_length=20)
