@@ -22,7 +22,7 @@ class Contest(models.Model):
 		(CreativeWriting, 'Creative Writing'),
 	)
 
-	owner = models.CharField('Contest Owner', max_length=20)
+	owner = models.ForeignKey(C_Owner)
 	title = models.CharField('Contest Title', max_length=20)
 	category = models.CharField('Contest Category', choices=category_choices, max_length=20)
 	description = models.CharField('Contest Description', max_length=50)
