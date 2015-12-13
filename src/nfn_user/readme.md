@@ -1,0 +1,2 @@
+->  change_view function in admin.py checks for user groups and dynamically inlines relevant fields from the profile model.
+	Currently in only checks if a user is the member of a group "Contest Owner", spelled exactly, and inlines info from C_Owner if it is so.
