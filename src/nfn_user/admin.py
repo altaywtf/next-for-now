@@ -23,8 +23,8 @@ class UserAdmin(BaseUserAdmin):
 		return super(UserAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
 
 	#Modifies "Add View"
-#	def add_view(self, request, form_url='', extra_context=None):
-#		return super(UserAdmin, self).add_view(request)
+	def add_view(self, request, form_url='', extra_context=None):
+		return super(UserAdmin, self).add_view(request)
 
 	
 

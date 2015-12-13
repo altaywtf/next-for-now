@@ -14,9 +14,11 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from nfn_user import urls as nfn_user_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^signup/', include(nfn_user_urls))
 ]
