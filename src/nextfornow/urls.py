@@ -20,4 +20,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^contests/', include('nfn_contests.urls')),
+    url(r'^signup/', include('nfn_user.urls'))
 ]
