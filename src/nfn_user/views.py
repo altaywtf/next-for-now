@@ -13,4 +13,8 @@ def cOwnerSignUpView(request):
 		formset = COwnerFormSet(request.POST, instance=created_user)
 	else:
 		formset = COwnerFormSet(instance=user)
+<<<<<<< HEAD
 	return render(request, 'cownersignup.html', {'formset':formset})
+=======
+	return render(request, 'cownersignup.html', {'formset':formset})
+>>>>>>> 8c057138d5db62836a3be0c616a66b999300f984
