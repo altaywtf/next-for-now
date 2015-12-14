@@ -12,6 +12,6 @@ Welcome to the documentation page of **Next For Now**.
 
 [04. Backend Architecture](4_backend_architecture.md)
 
-[05. Frontend Architecture](5_frontend_architecture.md)
+[05. Style Guide & Frontend Architecture](5_frontend_architecture.md)
 
 [06. Server Configuration](6_server_configuration.md)
