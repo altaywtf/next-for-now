@@ -43,6 +43,7 @@ class Submission(models.Model):
 	s_details = models.TextField('Submission Details')
 	s_file = models.FileField('Submission File', upload_to='../media/submissions/', blank=True, null=True)
 	feedback = models.TextField('Contest Owner\'s Feedback', blank=True, null=True)
+	is_winner = models.BooleanField('Winner!', default=False)
 	date_posted = models.DateTimeField('Submission Date', auto_now_add=True)
 
 	def __unicode__(self):
