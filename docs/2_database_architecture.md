@@ -52,15 +52,9 @@ Existing Django models for users will be used. Additional fields for users will 
 - submission details -> filled by Applicant
 - files -> uploaded by Applicant
 - date_posted
+- feedback -> filled by Contest Owner (TextField)
+- is_winner -> filled by Contest Owner (Boolean)
 
-###Feedbacks & Winners
-How should we structure submission feedbacks and contest winners?
-Maybe we can set up another table for them?
-
-- contest -> ForeignKey(Contest)
-- submission -> ForeignKey(Submissin)
-- feedback -> filled by Contest Owner
-- is_winner -> filled by Contest Owner
 
 ---
 

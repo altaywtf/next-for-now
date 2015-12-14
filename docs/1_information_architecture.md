@@ -47,4 +47,9 @@ In order to make a submission to a contest, the [applicant](#applicants) needs t
 - Submission Information (brief information about submission)
 - Submission Files
 
+###Evaluating Submissions
+When a contest reaches to its deadline, contest owners should pick a winner. They can also give feedbacks to posted submissions. Evaluation form will include following fields
+- Feedback
+- Is Winner?
+
 ---
