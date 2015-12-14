@@ -37,6 +37,7 @@ In the contest creating process, [contest owners](#contest-owners) need to fill 
 - Details
 - Featured Image
 - Award
+- Start Date
 - Deadline
 
 ###Posting a Submission

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 
 from .models import Contest, Submission
@@ -14,3 +14,13 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
 	model = Contest
 	template_name = 'contests/details.html'
+
+''' class CreateView(): '''
+
+''' class EditView(): '''
+
+''' class ApplyView(): '''
+
+''' class SubmissionsView(): '''
+
+''' class ViewSubmissionView(): '''
