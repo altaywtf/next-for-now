@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
 	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		return Contest.objects.filter(is_approved='Approved').order_by('-date_started')
+		return Contest.objects.filter(is_approved=True).order_by('-date_started')
 	
 	def get_context_data(self, *args, **kwargs):
 		context = super(IndexView, self).get_context_data(*args, **kwargs)
@@ -26,7 +26,7 @@ class FilterByCategory(generic.ListView):
 	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		return Contest.objects.filter(category=self.kwargs['category_name'], is_approved='Approved').order_by('-date_started')
+		return Contest.objects.filter(category=self.kwargs['category_name'], is_approved=True).order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(FilterByCategory, self).get_context_data(*args, **kwargs)
@@ -41,7 +41,7 @@ class FilterByOwner(generic.ListView):
 
 	def get_queryset(self):
 		self.owner = get_object_or_404(C_Owner, pk=self.kwargs['company_pk'])
-		return Contest.objects.filter(owner_id=self.kwargs['company_pk'], is_approved='Approved').order_by('-date_started')
+		return Contest.objects.filter(owner_id=self.kwargs['company_pk'], is_approved=True).order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(FilterByOwner, self).get_context_data(*args, **kwargs)

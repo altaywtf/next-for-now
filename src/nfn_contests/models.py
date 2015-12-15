@@ -23,7 +23,7 @@ class Contest(models.Model):
 	award = models.CharField(max_length=50)
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
-	is_approved = models.CharField('Approval', choices=(('Approved', 'Approved'), ('Not Approved', 'Not Approved')), max_length=20, blank=False)
+	is_approved = models.BooleanField('Approved', default=True)
 	is_ongoing = models.CharField('Status', choices=(('Ongoing', 'Ongoing'), ('Finished', 'Finished')), max_length=20, blank=True)
 
 	@property
