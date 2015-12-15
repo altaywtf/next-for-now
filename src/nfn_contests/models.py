@@ -50,7 +50,7 @@ class Submission(models.Model):
 	a_details = models.TextField('Applicant Details')
 	s_details = models.TextField('Submission Details')
 	s_file = models.FileField('Submission File', upload_to='../media/submissions/', null=True)
-	feedback = models.TextField('Contest Owner\'s Feedback', blank=True)
+	feedback = models.TextField('Contest Owner\'s Feedback', blank=True, null=True)
 	is_winner = models.BooleanField('Winner!', default=False)
 	date_posted = models.DateTimeField('Submission Date', auto_now_add=True)
 
