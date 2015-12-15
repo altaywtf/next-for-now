@@ -15,7 +15,10 @@ We are using Django web framework (version 1.9)
 - View individual (/contests/{contest_id})
 - View all contests from a category (/contests/category/{category_name})
 - View all contests created by a contest owner (/contests/company/{company_pk})
+- Create (/contests/create)
+- Edit (/contests/edit)
 - Delete (/contests/delete)
+
 
 ###Submissions
 - Posting a submission (/contests/{contest_id}/apply)
