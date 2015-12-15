@@ -1,5 +1,4 @@
 from django import forms
-from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import C_Owner
