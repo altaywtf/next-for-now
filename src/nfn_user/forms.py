@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, forms
 from .models import C_Owner
 
 C_OWNER_GROUP = 'Contest Owner'
@@ -36,3 +36,7 @@ class ApplicantCreationForm(UserCreationForm):
 		user = super(ApplicantCreationForm, self).save(commit=True)
 		Group.objects.get(name=APPLICANT_GROUP).user_set.add(user)
 		return user
+
+class LoginForm(forms.Form):
+	username = forms.CharField(label='Username')
+	password = forms.CharField(label='Password', widget=forms.PasswordInput)
