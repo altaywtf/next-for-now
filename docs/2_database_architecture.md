@@ -6,6 +6,8 @@ This document contains the database architecture & schemas of Next For Now.
 
 
 ##Database Tables for Users
+Existing Django models for users will be used. Additional fields for users will be added via profile models.
+
 ###Admins
 - id
 - username (e-mail)
@@ -18,13 +20,11 @@ This document contains the database architecture & schemas of Next For Now.
 - company name
 - company address
 - website
-- contests -> (hasTooMany)
 
 ###Applicants
 - id
 - username (e-mail)
 - password
-- submissions -> (hasTooMany)
 
 
 ---
@@ -32,29 +32,29 @@ This document contains the database architecture & schemas of Next For Now.
 
 ##Database Tables for Contents
 ###Contests
-- id
-- owner -> (hasOne) from Contest Owners
+- owner -> ForeignKey(C_Owner)
 - title
 - category -> Selected from a list of Categories
 - description
 - details
 - image
 - award
-- is_active (boolean) controlled by Admins
-- is_over (boolean) controlled by Contest Owner (also related to deadline)
-- submissions -> (hasTooMany)
-- date_posted
+- is_approved -> controlled by Admins
+- is_ongoing (Related to deadline)
+- date_start
 - date_deadline
-- winner -> (hasOne) from Submissions
 
 ###Submissions
-- id
-- contest -> (hasOne) from Contests
-- applicant -> (hasOne) from Applicants
-- details -> filled by Applicant
+- contest -> ForeignKey(Contests)
+- applicant -> ForeignKey(Applicants)
+- applicant name(s) -> filled by Applicant
+- applicant details -> filled by Applicant
+- submission details -> filled by Applicant
 - files -> uploaded by Applicant
-- feedback -> (hasOne) given by Contest Owners
 - date_posted
+- feedback -> filled by Contest Owner (TextField)
+- is_winner -> filled by Contest Owner (Boolean)
+
 
 ---
 
@@ -62,8 +62,3 @@ This document contains the database architecture & schemas of Next For Now.
 ###Schema Drawings
 
 ![alt text](assets/img/NextForNowER.png "E.R Diagram")
-
-####Additional Info
-Existing Django models for users will be used. Additional fields for users will be added via profile models.
-
----

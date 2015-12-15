@@ -9,3 +9,6 @@ class C_Owner(models.Model):
 	website = models.URLField('Website', max_length=500,)
 	company_name = models.CharField('Company Name', max_length=200)
 	company_address = models.TextField('Company Address')
+
+	def __unicode__(self):
+		return self.company_name

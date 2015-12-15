@@ -1,10 +1,11 @@
+<p>AYY LMAO</p>
+
 {% for contest in ongoing_contests_list %}
-<ul>
+<ul style='border:1px solid black;'>
 	<li>Contest Title: {{ contest.title }}</li>
-	<li>Contest Onwer: {{ contest.owner }}</li>
+	<li>Contest Owner: {{ contest.owner }}</li>
 	<li>Contest Category: {{ contest.category }}</li>
 	<li>Contest Status: {{ contest.ongoing_check }}</li>
+	<a href="{% url 'contests:detail' contest.id %}">Details</a>
 </ul>
 {% endfor %}
-
-<p>D:</p>

@@ -37,6 +37,7 @@ In the contest creating process, [contest owners](#contest-owners) need to fill 
 - Details
 - Featured Image
 - Award
+- Start Date
 - Deadline
 
 ###Posting a Submission
@@ -45,5 +46,10 @@ In order to make a submission to a contest, the [applicant](#applicants) needs t
 - Applicant Information (brief information about applicant(s))
 - Submission Information (brief information about submission)
 - Submission Files
+
+###Evaluating Submissions
+When a contest reaches to its deadline, contest owners should pick a winner. They can also give feedbacks to posted submissions. Evaluation form will include following fields
+- Feedback
+- Is Winner?
 
 ---
