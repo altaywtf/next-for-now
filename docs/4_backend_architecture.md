@@ -13,8 +13,8 @@ We are using Django web framework (version 1.9)
 ###Contests
 - View all (/contests)
 - View individual (/contests/{contest_id})
-- Create (/contests/create)
-- Edit (/contests/edit)
+- View all contests from a category (/contests/category/{category_name})
+- View all contests created by a contest owner (/contests/company/{company_pk})
 - Delete (/contests/delete)
 
 ###Submissions
