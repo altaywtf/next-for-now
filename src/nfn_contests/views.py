@@ -62,6 +62,7 @@ class ContestCreate(generic.CreateView):
 	success_url = '/contests/'
 
 	def form_valid(self, form):
+		form.instance.owner = self.request.user.c_owner
 		return super(ContestCreate, self).form_valid(form)
 
 

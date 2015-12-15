@@ -4,7 +4,7 @@ from .models import Contest, Submission
 class ContestCreationForm(forms.ModelForm):
 	class Meta:
 		model = Contest
-		fields = ['owner', 'title', 'category', 'description', 'details', 'award', 'date_started', 'date_deadline']
+		fields = ['title', 'category', 'description', 'details', 'award', 'date_started', 'date_deadline']
 		widgets = {
             'date_started': forms.SelectDateWidget(),
             'date_deadline': forms.SelectDateWidget(),
