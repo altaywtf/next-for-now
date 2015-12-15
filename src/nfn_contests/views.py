@@ -3,15 +3,53 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 
 from .models import Contest, Submission
+from nfn_user.models import C_Owner
 
 class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
-	context_object_name = 'ongoing_contests_list'
+	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		return Contest.objects.filter(is_ongoing='Ongoing')[:5]
+		return Contest.objects.filter(is_approved='Approved').order_by('-date_started')
+	
+	def get_context_data(self, *args, **kwargs):
+		context = super(IndexView, self).get_context_data(*args, **kwargs)
+		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
+		context['contest_owner_list'] = C_Owner.objects.all()
+		return context
 
-class DetailView(generic.DetailView):
+
+class FilterByCategory(generic.ListView):
+	template_name = 'contests/index.html'
+	context_object_name = 'contest_list'
+
+	def get_queryset(self):
+		self.category = get_object_or_404(Contest, category=self.kwargs['category_name'])
+		return Contest.objects.filter(category=self.kwargs['category_name'], is_approved='Approved').order_by('-date_started')
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(FilterByCategory, self).get_context_data(*args, **kwargs)
+		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
+		context['contest_owner_list'] = C_Owner.objects.all()
+		return context
+
+
+class FilterByOwner(generic.ListView):
+	template_name = 'contests/index.html'
+	context_object_name = 'contest_list'
+
+	def get_queryset(self):
+		self.owner = get_object_or_404(C_Owner, pk=self.kwargs['company_pk'])
+		return Contest.objects.filter(owner_id=self.kwargs['company_pk'], is_approved='Approved').order_by('-date_started')
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(FilterByOwner, self).get_context_data(*args, **kwargs)
+		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
+		context['contest_owner_list'] = C_Owner.objects.all()
+		return context
+
+
+class ContestDetailView(generic.DetailView):
 	model = Contest
 	template_name = 'contests/details.html'
 
