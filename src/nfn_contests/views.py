@@ -5,6 +5,8 @@ from django.views import generic
 from .models import Contest, Submission
 from nfn_user.models import C_Owner
 
+from .forms import ContestCreationForm
+
 class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
 	context_object_name = 'contest_list'
@@ -24,7 +26,6 @@ class FilterByCategory(generic.ListView):
 	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		self.category = get_object_or_404(Contest, category=self.kwargs['category_name'])
 		return Contest.objects.filter(category=self.kwargs['category_name'], is_approved='Approved').order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
@@ -53,7 +54,16 @@ class ContestDetailView(generic.DetailView):
 	model = Contest
 	template_name = 'contests/details.html'
 
-''' class CreateView(): '''
+
+class ContestCreate(generic.CreateView):
+	form_class = ContestCreationForm
+	model = Contest
+	template_name = 'contests/create.html'
+	success_url = '/contests/'
+
+	def form_valid(self, form):
+		return super(ContestCreate, self).form_valid(form)
+
 
 ''' class EditView(): '''
 

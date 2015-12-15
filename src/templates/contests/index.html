@@ -1,3 +1,17 @@
+
+
+{% if user.is_authenticated %}
+{{ user.username }}
+<br>
+{{ user.email }}
+{{ user.profile }}
+{% endif %}
+
+<br>
+
+{{ user.groups.all.0 }}
+
+
 <p>AYY LMAO</p>
 
 Filter by Category

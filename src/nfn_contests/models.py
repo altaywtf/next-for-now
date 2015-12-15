@@ -14,17 +14,17 @@ class Contest(models.Model):
 		('mediaproduction', 'Media Production'),
 		('creativewriting', 'Creative Writing'),
 	)
-	owner = models.ForeignKey(C_Owner)
-	title = models.CharField(max_length=20)
-	category = models.CharField(choices=category_choices, max_length=20)
+	owner = models.ForeignKey(C_Owner, on_delete=models.CASCADE)
+	title = models.CharField(max_length=30)
+	category = models.CharField(choices=category_choices, max_length=30)
 	description = models.CharField(max_length=50)
 	details = models.TextField()
-	image = models.ImageField(upload_to='../media/contests/', null=True)
+	image = models.ImageField(upload_to='../media/contests/', null=True, blank=True)
 	award = models.CharField(max_length=50)
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
 	is_approved = models.CharField('Approval', choices=(('Approved', 'Approved'), ('Not Approved', 'Not Approved')), max_length=20, blank=False)
-	is_ongoing = models.CharField('Status', choices=(('Ongoing', 'Ongoing'), ('Finished', 'Finished')), max_length=20)
+	is_ongoing = models.CharField('Status', choices=(('Ongoing', 'Ongoing'), ('Finished', 'Finished')), max_length=20, blank=True)
 
 	@property
 	def ongoing_check(self):
@@ -38,7 +38,6 @@ class Contest(models.Model):
 		categories = []
 		for category in self.category_choices: categories.append(str(category[0]))
 		return categories
-
 
 	def __unicode__(self):
 		return self.title
