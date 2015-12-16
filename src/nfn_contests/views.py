@@ -100,21 +100,14 @@ class SubmissionCreate(generic.CreateView):
 	template_name = 'contests/_form_submission.html'
 	success_url = '/contests/'
 
-	def get_context_data(self, *args, **kwargs):
-		context = super(SubmissionCreate, self).get_context_data(*args, **kwargs)
-		context['submission_contest'] = Contest.objects.get(pk=self.kwargs['contest_pk'])
-		return context
-
-	def form_valid(self, form):
-		form.instance.applicant = self.request.user
-		form.instance.contest = Contest.objects.get(pk=8)
-		return super(SubmissionCreate, self).form_valid(form)
-
-	'''
 	def get(self, request, *args, **kwargs):
 		self.contest = get_object_or_404(Contest, pk=self.kwargs['contest_pk'])
 		return super(SubmissionCreate, self).get(request, *args, **kwargs)
-	'''
+
+	def form_valid(self, form, **kwargs):
+		form.instance.applicant = self.request.user
+		form.instance.contest = Contest.objects.get(pk=self.kwargs['contest_pk'])
+		return super(SubmissionCreate, self).form_valid(form)
 
 
 ''' class EditView(): '''

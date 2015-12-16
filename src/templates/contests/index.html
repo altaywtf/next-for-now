@@ -1,14 +1,15 @@
 {% if user.is_authenticated %}
-	{{ user.username }}
+	Username: {{ user.username }}
 	<br>
-	{{ user.email }}
+	Email: {{ user.email }}
 	<br>
-	{{ user.c_owner }}
-	<br>
-	{{ user.groups.all }}
+	Groups: {{ user.groups.all }}
+
+{% else %}
+	<a href="/user/login">Login Plox</a>	
 {% endif %}
 
-<br>
+<hr>
 
 <p>Filter by Category</p>
 <ul>
