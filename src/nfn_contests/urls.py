@@ -15,4 +15,8 @@ urlpatterns = [
 	url(r'^create/$', views.ContestCreate.as_view(), name='create_contest'),
 	url(r'^(?P<pk>[0-9]+)/update/$', views.ContestUpdate.as_view(), name='update_contest'),
 	url(r'^(?P<pk>[0-9]+)/delete/$', views.ContestDelete.as_view(), name='delete_contest'),
+
+	url(r'^(?P<contest_pk>[0-9]+)/apply/$', views.SubmissionCreate.as_view(), name='post_submission'),
 ]
+
+# url(r'^(?P<contest_pk>[0-9]+)/submissions/(?P<pk>[0-9]+)/$', views.SubmissonUpdate.as_view(), name='update_submission'),

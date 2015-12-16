@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 
 from nfn_user.models import C_Owner
+from django.contrib.auth.models import User
 
 class Contest(models.Model):
 	category_choices = (
@@ -41,12 +42,12 @@ class Contest(models.Model):
 		return self.title
 
 class Submission(models.Model):
-	applicant = models.CharField('Applicant Account', max_length=20)
+	applicant = models.ForeignKey(User, on_delete=models.CASCADE)
 	contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
 	a_names = models.CharField('Applicant Name(s)', max_length=200)
 	a_details = models.TextField('Applicant Details')
 	s_details = models.TextField('Submission Details')
-	s_file = models.FileField('Submission File', upload_to='../media/submissions/', null=True)
+	s_file = models.FileField('Submission File', upload_to='../media/submissions/', null=True, blank=True)
 	feedback = models.TextField('Contest Owner\'s Feedback', blank=True, null=True)
 	is_winner = models.BooleanField('Winner!', default=False)
 	date_posted = models.DateTimeField('Submission Date', auto_now_add=True)

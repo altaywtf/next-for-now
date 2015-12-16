@@ -10,8 +10,8 @@
 {% if user.c_owner == contest.owner %}
 <p>WOW! Looks like you are the owner of this contest. Here's what you can do:</p>
 <ul>
-	<li><a href="/contests/update/{{contest.pk}}">Edit</a></li>
-	<li><a href="/contests/delete/{{contest.pk}}">Delete</a></li>
+	<li><a href="/contests/{{contest.pk}}/update">Edit</a></li>
+	<li><a href="/contests/{{contest.pk}}/delete">Delete</a></li>
 	<li><a href=""></a>Announce Winner</li>
 </ul>
 

@@ -10,38 +10,13 @@ class ContestForm(forms.ModelForm):
             'date_deadline': forms.SelectDateWidget(),
         }
 
+class SubmissionForm(forms.ModelForm):
+  class Meta:
+    model = Submission
+    fields = ['a_names', 'a_details', 's_details', 's_file']
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 
 '''
-        ____                           
-   _||__|  |  ______   ______   ______ 
-  (        | |      | |      | |      |
-  /-()---() ~ ()--() ~ ()--() ~ ()--()
-
-
-class SubmissionCreationForm(forms.Form):
-	class Meta:
-		model = Submission
-		fields = ['a_names', 'a_details', 's_details', 's_file']
-
         ____                           
    _||__|  |  ______   ______   ______ 
   (        | |      | |      | |      |

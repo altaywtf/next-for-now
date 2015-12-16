@@ -5,7 +5,7 @@ from django.views import generic
 from .models import Contest, Submission
 from nfn_user.models import C_Owner
 
-from .forms import ContestForm
+from .forms import ContestForm, SubmissionForm
 
 class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
@@ -19,7 +19,6 @@ class IndexView(generic.ListView):
 		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
 		context['contest_owner_list'] = C_Owner.objects.all()
 		return context
-
 
 class FilterByCategory(generic.ListView):
 	template_name = 'contests/index.html'
@@ -53,6 +52,7 @@ class FilterByOwner(generic.ListView):
 class ContestDetailView(generic.DetailView):
 	model = Contest
 	template_name = 'contests/details.html'
+
 
 
 class ContestCreate(generic.CreateView):
@@ -94,7 +94,28 @@ class ContestDelete(generic.DeleteView):
 
 
 
-''' class ContestDelete(generic.DeleteView): '''
+class SubmissionCreate(generic.CreateView):
+	form_class = SubmissionForm
+	model = Submission
+	template_name = 'contests/_form_submission.html'
+	success_url = '/contests/'
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(SubmissionCreate, self).get_context_data(*args, **kwargs)
+		context['submission_contest'] = Contest.objects.get(pk=self.kwargs['contest_pk'])
+		return context
+
+	def form_valid(self, form):
+		form.instance.applicant = self.request.user
+		form.instance.contest = Contest.objects.get(pk=8)
+		return super(SubmissionCreate, self).form_valid(form)
+
+	'''
+	def get(self, request, *args, **kwargs):
+		self.contest = get_object_or_404(Contest, pk=self.kwargs['contest_pk'])
+		return super(SubmissionCreate, self).get(request, *args, **kwargs)
+	'''
+
 
 ''' class EditView(): '''
 
