@@ -33,6 +33,6 @@
 	<li>Contest Status: {{ contest.ongoing_check }}</li>
 	<li>Start Date: {{ contest.date_started }}</li>
 	<li>Deadline: {{ contest.date_deadline }}</li>
-	<a href="{% url 'contests:detail' contest.id %}">Details</a>
+	<a href="/contests/{{ contest.pk }}">Details</a>
 </ul>
 {% endfor %}

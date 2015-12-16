@@ -1,0 +1,17 @@
+<p><b>Applicant Name(s):</b> {{ submission.a_names }}</p>
+<p><b>Applicant Details:</b> {{ submission.a_details }}</p>
+<p><b>Submission Details:</b> {{ submission.s_details }}</p>
+<p><b>Date Posted: </b>{{ submission.date_posted }}</p>
+
+{% if user.c_owner == submission.contest.owner %}
+<hr>
+<p>Did you like it?</p> 
+<p>Then you should <a href="">Give a Feedback</a></p>
+{% endif %}
+
+{% if user == submission.applicant %}
+<hr>
+<p>You posted this!</p>
+<p><a href="/contests/{{submission.contest.pk}}/submissions/{{submission.pk}}/update">Update Submission</a></p>
+<p><a href="/contests/{{submission.contest.pk}}/submissions/{{submission.pk}}/delete">Delete Submission</a></p>
+{% endif %}

@@ -1,0 +1,58 @@
+<h1>Title: {{ contest.title }}</h1>
+<p>Owner: {{ contest.owner }}</p>
+<p>Details: {{ contest.details }}</p>
+<p>Date Started: {{ contest.date_started }}</p>
+<p>Deadline: {{ contest.date_deadline }}</p>
+
+<hr>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- If authenticated -->
+{% if user.is_authenticated %}
+	<!-- & if group is applicant -->	
+	{% ifequal user.groups.all.0.name 'Applicant' %}
+	<p>Posting a Submission?</p>
+	<p><a href="/contests/{{contest.pk}}/apply">Post a Submission</a></p>
+	{% endifequal %}
+
+<!-- If not authenticated -->
+{% else %}
+	<p>Posting a Submission</p>
+	<p><a href="/user/signup/applicant">Sign Up First Pl0x</a></p>
+{% endif %}
+<hr>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- Check if the user logged in is contest's owner -->
+{% if user.c_owner == contest.owner %}
+<p>WOW! Looks like you are the owner of this contest. Here's what you can do:</p>
+<ul>
+	<li><a href="/contests/{{contest.pk}}/update">Edit</a></li>
+	<li><a href="/contests/{{contest.pk}}/delete">Delete</a></li>
+	<li><a href=""></a>Announce Winner</li>
+</ul>
+
+<!-- Views the submissions -->
+<p>You can also view the submissions</p>
+{% if contest.submission_set %}
+	<ul>
+	{% for submission in contest.submission_set.all %}
+		<li>
+		<b>Submitted by</b> {{ submission.applicant }}
+		<br>
+		<b>On</b> {{ submission.date_posted }}
+		<br>
+		<b><a href="/contests/{{contest.pk}}/submissions/{{submission.pk}}">View Submission</a></b>
+		</li>
+	{% endfor %}
+	</ul>
+
+{% else %}
+	asdsad
+
+{% endif %}
+{% endif %}
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - -->

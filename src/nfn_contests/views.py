@@ -49,9 +49,9 @@ class FilterByOwner(generic.ListView):
 		return context
 
 
-class ContestDetailView(generic.DetailView):
+class ContestDetail(generic.DetailView):
 	model = Contest
-	template_name = 'contests/details.html'
+	template_name = 'contests/details_contest.html'
 
 
 
@@ -110,10 +110,53 @@ class SubmissionCreate(generic.CreateView):
 		return super(SubmissionCreate, self).form_valid(form)
 
 
-''' class EditView(): '''
+class SubmissionDetail(generic.DetailView):
+	model = Submission
+	template_name = 'contests/details_submission.html'
 
-''' class ApplyView(): '''
+	def get_object(self, *args, **kwargs):
+		obj = super(SubmissionDetail, self).get_object(*args, **kwargs)
 
-''' class SubmissionsView(): '''
+		if self.request.user.groups.all()[0].name == "Contest Owner":
+			if not obj.contest.owner == self.request.user.c_owner:
+				raise Http
+		
+		else:
+			if not obj.applicant == self.request.user:
+				raise Http404
 
-''' class ViewSubmissionView(): '''
+		return obj
+
+
+class SubmissionUpdate(generic.UpdateView):
+	form_class = SubmissionForm
+	model = Submission
+	template_name = 'contests/_form_submission.html'
+	success_url = '/contests/'
+
+	def get(self, request, *args, **kwargs):
+		self.contest = get_object_or_404(Contest, pk=self.kwargs['contest_pk'])
+		return super(SubmissionUpdate, self).get(request, *args, **kwargs)
+
+	def get_object(self, *args, **kwargs):
+		obj = super(SubmissionUpdate, self).get_object(*args, **kwargs)
+		if not obj.applicant == self.request.user:
+			raise Http404
+		return obj
+
+	def form_valid(self, form, **kwargs):
+		form.instance.applicant = self.request.user
+		form.instance.contest = Contest.objects.get(pk=self.kwargs['contest_pk'])
+		return super(SubmissionUpdate, self).form_valid(form)
+		
+
+class SubmissionDelete(generic.DeleteView):
+	model = Submission
+	template_name = 'contests/_form_contest_delete.html'
+	success_url = '/contests/'
+
+	def get_object(self, *args, **kwargs):
+		obj = super(SubmissionDelete, self).get_object(*args, **kwargs)
+		if not obj.applicant == self.request.user:
+			raise Http404
+		return obj
