@@ -1,7 +1,7 @@
 from django import forms
 from .models import Contest, Submission
 
-class ContestCreationForm(forms.ModelForm):
+class ContestForm(forms.ModelForm):
 	class Meta:
 		model = Contest
 		fields = ['title', 'category', 'description', 'details', 'award', 'date_started', 'date_deadline']
@@ -9,16 +9,6 @@ class ContestCreationForm(forms.ModelForm):
             'date_started': forms.SelectDateWidget(),
             'date_deadline': forms.SelectDateWidget(),
         }
-
-class ContestUpdateForm(forms.ModelForm):
-  class Meta:
-    model = Contest
-    fields = ['title', 'category', 'description', 'details', 'award', 'date_started', 'date_deadline']
-    widgets = {
-            'date_started': forms.SelectDateWidget(),
-            'date_deadline': forms.SelectDateWidget(),
-        }
-
 
 
 

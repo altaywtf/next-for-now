@@ -5,7 +5,7 @@ from django.views import generic
 from .models import Contest, Submission
 from nfn_user.models import C_Owner
 
-from .forms import ContestCreationForm, ContestUpdateForm
+from .forms import ContestForm
 
 class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
@@ -56,9 +56,9 @@ class ContestDetailView(generic.DetailView):
 
 
 class ContestCreate(generic.CreateView):
-	form_class = ContestCreationForm
+	form_class = ContestForm
 	model = Contest
-	template_name = 'contests/create.html'
+	template_name = 'contests/_form_contest.html'
 	success_url = '/contests/'
 
 	def form_valid(self, form):
@@ -66,9 +66,9 @@ class ContestCreate(generic.CreateView):
 		return super(ContestCreate, self).form_valid(form)
 
 class ContestUpdate(generic.UpdateView):
-	form_class = ContestUpdateForm
+	form_class = ContestForm
 	model = Contest
-	template_name = 'contests/update.html'
+	template_name = 'contests/_form_contest.html'
 	success_url = '/contests/'
 
 	def get_object(self, *args, **kwargs):
