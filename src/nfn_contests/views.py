@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
 
 from .models import Contest, Submission
 from nfn_user.models import C_Owner
 
-from .forms import ContestCreationForm
+from .forms import ContestCreationForm, ContestUpdateForm
 
 class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
@@ -65,6 +65,25 @@ class ContestCreate(generic.CreateView):
 		form.instance.owner = self.request.user.c_owner
 		return super(ContestCreate, self).form_valid(form)
 
+class ContestUpdate(generic.UpdateView):
+	form_class = ContestUpdateForm
+	model = Contest
+	template_name = 'contests/update.html'
+	success_url = '/contests/'
+
+	def get_object(self, *args, **kwargs):
+		obj = super(ContestUpdate, self).get_object(*args, **kwargs)
+		if not obj.owner == self.request.user.c_owner:
+			raise Http404
+		return obj
+
+	def form_valid(self, form):
+		form.instance.owner = self.request.user.c_owner
+		return super(ContestUpdate, self).form_valid(form)
+
+
+
+''' class ContestDelete(generic.DeleteView): '''
 
 ''' class EditView(): '''
 

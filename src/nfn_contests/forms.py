@@ -10,6 +10,36 @@ class ContestCreationForm(forms.ModelForm):
             'date_deadline': forms.SelectDateWidget(),
         }
 
+class ContestUpdateForm(forms.ModelForm):
+  class Meta:
+    model = Contest
+    fields = ['title', 'category', 'description', 'details', 'award', 'date_started', 'date_deadline']
+    widgets = {
+            'date_started': forms.SelectDateWidget(),
+            'date_deadline': forms.SelectDateWidget(),
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
 '''
         ____                           
    _||__|  |  ______   ______   ______ 

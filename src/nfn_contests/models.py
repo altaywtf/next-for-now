@@ -24,14 +24,12 @@ class Contest(models.Model):
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
 	is_approved = models.BooleanField('Approved', default=True)
-	is_ongoing = models.CharField('Status', choices=(('Ongoing', 'Ongoing'), ('Finished', 'Finished')), max_length=20, blank=True)
 
 	@property
-	def ongoing_check(self):
+	def is_ongoing(self):
 		if self.date_deadline > datetime.date.today():
 			return "Ongoing"
-		else:
-			return "Finished"
+		return "Finished"
 
 	@property
 	def get_categories(self):
