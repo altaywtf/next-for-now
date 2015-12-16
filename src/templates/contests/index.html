@@ -1,27 +1,21 @@
-
-
 {% if user.is_authenticated %}
-{{ user.username }}
-<br>
-{{ user.email }}
-{{ user.profile }}
+	{{ user.username }}
+	<br>
+	{{ user.email }}
+	<br>
+	{{ user.c_owner }}
 {% endif %}
 
 <br>
 
-{{ user.groups.all.0 }}
-
-
-<p>AYY LMAO</p>
-
-Filter by Category
+<p>Filter by Category</p>
 <ul>
 	{% for category in contest_category_list %}
 	<li><a href="/contests/category/{{ category }}">{{ category|title}}</a></li>
 	{% endfor %}
 </ul>
 
-Filter by Contest Onwers
+<p>Filter by Contest Onwers</p>
 <ul>
 	{% for owner in contest_owner_list %}
 	<li><a href="/contests/company/{{ owner.id }}">{{ owner.company_name }}</a></li>
@@ -29,7 +23,7 @@ Filter by Contest Onwers
 </ul>
 
 {% for contest in contest_list %}
-<ul style='border:1px solid black;'>
+<ul style='border:1px solid black; padding: 20px;'>
 	<li>Contest Title: {{ contest.title }}</li>
 	<li>Contest Owner: {{ contest.owner }}</li>
 	<li>Contest Category: {{ contest.category|title }}</li>

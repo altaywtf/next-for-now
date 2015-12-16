@@ -1,9 +1,22 @@
-<h1>Contest Title: {{ contest.title }}</h1>
-<p>Contest Owner: {{ contest.owner }}</p>
+<h1>Title: {{ contest.title }}</h1>
+<p>Owner: {{ contest.owner }}</p>
+<p>Details: {{ contest.details }}</p>
+<p>Date Started: {{ contest.date_started }}</p>
+<p>Deadline: {{ contest.date_deadline }}</p>
 
 <hr>
 
-<p>Submissions</p>
+<!-- Check if the user logged in is contest's owner -->
+{% if user.c_owner == contest.owner %}
+<p>WOW! Looks like you are the owner of this contest. Here's what you can do:</p>
+<ul>
+	<li><a href="/contests/update/{{contest.pk}}">Edit</a></li>
+	<li><a href="/contests/delete/{{contest.pk}}">Delete</a></li>
+	<li><a href=""></a>Announce Winner</li>
+</ul>
+
+<!-- Views the submissions -->
+<p>You can also view the submissions</p>
 {% if contest.submission_set %}
 	<ul>
 	{% for submission in contest.submission_set.all %}
@@ -11,4 +24,9 @@
 		<b>On</b> {{ submission.date_posted }}</li>
 	{% endfor %}
 	</ul>
+
+{% else %}
+	asdsad
+
+{% endif %}
 {% endif %}

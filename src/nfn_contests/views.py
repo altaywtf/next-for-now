@@ -81,6 +81,17 @@ class ContestUpdate(generic.UpdateView):
 		form.instance.owner = self.request.user.c_owner
 		return super(ContestUpdate, self).form_valid(form)
 
+class ContestDelete(generic.DeleteView):
+	model = Contest
+	template_name = 'contests/_form_contest_delete.html'
+	success_url = '/contests/'
+
+	def get_object(self, *args, **kwargs):
+		obj = super(ContestDelete, self).get_object(*args, **kwargs)
+		if not obj.owner == self.request.user.c_owner:
+			raise Http404
+		return obj
+
 
 
 ''' class ContestDelete(generic.DeleteView): '''
