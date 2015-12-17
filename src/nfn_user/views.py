@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import C_Owner
 from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm
@@ -42,3 +42,7 @@ def loginView(request):
 	else:
 		form = LoginForm()
 	return render(request, 'user/userform.html', {'form':form})
+
+def logoutView(request):
+	logout(request)
+	return HttpResponseRedirect(REDIRECT_PAGE)
