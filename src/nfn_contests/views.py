@@ -16,10 +16,46 @@ class IndexView(generic.ListView):
 		return self.allow_empty
 
 	def get_queryset(self):
-		return Contest.objects.filter(is_approved=True).order_by('-date_started')
+		return Contest.objects.filter(is_approved=True).order_by('-date_started')	
 	
 	def get_context_data(self, *args, **kwargs):
 		context = super(IndexView, self).get_context_data(*args, **kwargs)
+		context['contest_category_list'] = Category.objects.all()
+		context['contest_owner_list'] = C_Owner.objects.all()
+		return context
+
+class FilterByOngoing(generic.ListView):
+	template_name = 'contests/index.html'
+	context_object_name = 'contest_list'
+
+	def get_queryset(self):
+		q = Contest.objects.filter(is_approved=True)
+		context = []
+		for contest in q:
+			if contest.is_ongoing == "Ongoing":
+				context.append(contest)
+		return context
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(FilterByOngoing, self).get_context_data(*args, **kwargs)
+		context['contest_category_list'] = Category.objects.all()
+		context['contest_owner_list'] = C_Owner.objects.all()
+		return context
+
+class FilterByFinished(generic.ListView):
+	template_name = 'contests/index.html'
+	context_object_name = 'contest_list'
+
+	def get_queryset(self):
+		q = Contest.objects.filter(is_approved=True)
+		context = []
+		for contest in q:
+			if contest.is_ongoing == "Finished":
+				context.append(contest)
+		return context
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(FilterByFinished, self).get_context_data(*args, **kwargs)
 		context['contest_category_list'] = Category.objects.all()
 		context['contest_owner_list'] = C_Owner.objects.all()
 		return context
@@ -96,8 +132,6 @@ class ContestDelete(generic.DeleteView):
 		if not obj.owner == self.request.user.c_owner:
 			raise Http404
 		return obj
-
-
 
 class SubmissionCreate(generic.CreateView):
 	form_class = SubmissionForm

@@ -8,6 +8,8 @@ urlpatterns = [
 	url(r'^$', views.IndexView.as_view(), name='index'),	
 	url(r'^category/(?P<category_slug>[\w-]+)/$', views.FilterByCategory.as_view(), name='by_category'),
 	url(r'^company/(?P<company_pk>[\w-]+)/$', views.FilterByOwner.as_view(), name='by_owner'),
+	url(r'^ongoing/$', views.FilterByOngoing.as_view(), name='by_ongoing'),
+	url(r'^finished/$', views.FilterByFinished.as_view(), name='by_finished'),
 	
 	url(r'^create/$', views.ContestCreate.as_view(), name='create_contest'),
 	url(r'^(?P<slug>[\w-]+)/update/$', views.ContestUpdate.as_view(), name='update_contest'),
