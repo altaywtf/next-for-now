@@ -13,7 +13,7 @@
 	<!-- & if group is applicant -->	
 	{% ifequal user.groups.all.0.name 'Applicant' %}
 	<p>Posting a Submission?</p>
-	<p><a href="/contests/{{contest.pk}}/apply">Post a Submission</a></p>
+	<p><a href="/contests/{{contest.slug}}/apply">Post a Submission</a></p>
 	{% endifequal %}
 
 <!-- If not authenticated -->
@@ -29,8 +29,8 @@
 {% if user.c_owner == contest.owner %}
 <p>WOW! Looks like you are the owner of this contest. Here's what you can do:</p>
 <ul>
-	<li><a href="/contests/{{contest.pk}}/update">Edit</a></li>
-	<li><a href="/contests/{{contest.pk}}/delete">Delete</a></li>
+	<li><a href="/contests/{{contest.slug}}/update">Edit</a></li>
+	<li><a href="/contests/{{contest.slug}}/delete">Delete</a></li>
 	<li><a href=""></a>Announce Winner</li>
 </ul>
 
@@ -44,7 +44,7 @@
 		<br>
 		<b>On</b> {{ submission.date_posted }}
 		<br>
-		<b><a href="/contests/{{contest.pk}}/submissions/{{submission.pk}}">View Submission</a></b>
+		<b><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}">View Submission</a></b>
 		</li>
 	{% endfor %}
 	</ul>

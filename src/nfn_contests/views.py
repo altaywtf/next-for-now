@@ -29,8 +29,8 @@ class FilterByCategory(generic.ListView):
 	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		self.category = get_object_or_404(Category, pk=self.kwargs['category_pk'])
-		return Contest.objects.filter(category__pk=self.kwargs['category_pk'], is_approved=True).order_by('-date_started')
+		self.category = get_object_or_404(Category, slug=self.kwargs['category_slug'])
+		return Contest.objects.filter(category__slug=self.kwargs['category_slug'], is_approved=True).order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(FilterByCategory, self).get_context_data(*args, **kwargs)
@@ -57,7 +57,7 @@ class FilterByOwner(generic.ListView):
 class ContestDetail(generic.DetailView):
 	model = Contest
 	template_name = 'contests/details_contest.html'
-
+	slug_field = 'slug'
 
 
 class ContestCreate(generic.CreateView):
@@ -106,12 +106,12 @@ class SubmissionCreate(generic.CreateView):
 	success_url = '/contests/'
 
 	def get(self, request, *args, **kwargs):
-		self.contest = get_object_or_404(Contest, pk=self.kwargs['contest_pk'])
+		self.contest = get_object_or_404(Contest, slug=self.kwargs['contest_slug'])
 		return super(SubmissionCreate, self).get(request, *args, **kwargs)
 
 	def form_valid(self, form, **kwargs):
 		form.instance.applicant = self.request.user
-		form.instance.contest = Contest.objects.get(pk=self.kwargs['contest_pk'])
+		form.instance.contest = Contest.objects.get(slug=self.kwargs['contest_slug'])
 		return super(SubmissionCreate, self).form_valid(form)
 
 
@@ -140,7 +140,7 @@ class SubmissionUpdate(generic.UpdateView):
 	success_url = '/contests/'
 
 	def get(self, request, *args, **kwargs):
-		self.contest = get_object_or_404(Contest, pk=self.kwargs['contest_pk'])
+		self.contest = get_object_or_404(Contest, slug=self.kwargs['contest_slug'])
 		return super(SubmissionUpdate, self).get(request, *args, **kwargs)
 
 	def get_object(self, *args, **kwargs):
@@ -151,7 +151,7 @@ class SubmissionUpdate(generic.UpdateView):
 
 	def form_valid(self, form, **kwargs):
 		form.instance.applicant = self.request.user
-		form.instance.contest = Contest.objects.get(pk=self.kwargs['contest_pk'])
+		form.instance.contest = Contest.objects.get(slug=self.kwargs['contest_slug'])
 		return super(SubmissionUpdate, self).form_valid(form)
 		
 

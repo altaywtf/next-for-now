@@ -14,7 +14,7 @@
 <p>Filter by Category</p>
 <ul>
 	{% for category in contest_category_list %}
-	<li><a href="/contests/category/{{ category.pk }}">{{ category|title}}</a></li>
+	<li><a href="/contests/category/{{ category.slug }}">{{ category|title }}</a></li>
 	{% endfor %}
 </ul>
 
@@ -33,6 +33,6 @@
 	<li><b>Contest Status:</b> {{ contest.is_ongoing }}</li>
 	<li><b>Start Date:</b> {{ contest.date_started }}</li>
 	<li><b>Deadline:</b> {{ contest.date_deadline }}</li>
-	<a href="/contests/{{ contest.pk }}">Details</a>
+	<a href="/contests/{{ contest.slug }}">Details</a>
 </ul>
 {% endfor %}

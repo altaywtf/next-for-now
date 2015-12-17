@@ -3,10 +3,10 @@ from django.contrib import admin
 from .models import Category, Contest, Submission
 
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ('pk', 'name', 'hex_code')
+	list_display = ('pk', 'name', 'slug', 'hex_code')
 
 class ContestAdmin(admin.ModelAdmin):
-	list_display = ('pk', 'title', 'owner', 'category', 'date_started', 'date_deadline', 'is_ongoing')
+	list_display = ('pk', 'title', 'slug', 'owner', 'category', 'date_started', 'date_deadline', 'is_ongoing')
 
 class SubmissionAdmin(admin.ModelAdmin):
 	list_display = ('pk', 'contest', 'a_names', 'date_posted')
