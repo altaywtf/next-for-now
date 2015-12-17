@@ -2,21 +2,16 @@ from __future__ import unicode_literals
 import datetime
 from django.db import models
 from django.utils import timezone
-from django.template.defaultfilters import slugify
+from autoslug import AutoSlugField
 
 from nfn_user.models import C_Owner
 from django.contrib.auth.models import User
 
 class Category(models.Model):
 	name = models.CharField('Name', max_length=30)
-	slug = models.SlugField(null=True, blank=True, unique=True)
+	slug = AutoSlugField(populate_from='name')
 	description = models.CharField('Description', max_length=100)
 	hex_code = models.CharField('Color Code', max_length=7)
-
-	def save(self):
-		if not self.id:
-			self.slug = slugify(self.name)
-			super (Category, self).save()
 
 	def __unicode__(self):
 		return self.name
@@ -24,7 +19,7 @@ class Category(models.Model):
 class Contest(models.Model):
 	owner = models.ForeignKey(C_Owner, on_delete=models.CASCADE)
 	title = models.CharField(max_length=30)
-	slug = models.SlugField(null=True, blank=True)
+	slug = AutoSlugField(populate_from='title', unique_with=['owner__company_name'])
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	description = models.CharField(max_length=50)
 	details = models.TextField()
@@ -34,11 +29,6 @@ class Contest(models.Model):
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
 	is_approved = models.BooleanField('Approved', default=True)
 
-	def save(self):
-		if not self.id:
-			self.slug = '%s-%s' % (slugify(self.title), slugify(self.owner.company_name))
-			super (Contest, self).save()
-
 	@property
 	def is_ongoing(self):
 		if self.date_deadline > datetime.date.today():
@@ -47,6 +37,7 @@ class Contest(models.Model):
 
 	def __unicode__(self):
 		return self.title
+
 
 class Submission(models.Model):
 	applicant = models.ForeignKey(User, on_delete=models.CASCADE)
