@@ -14,7 +14,7 @@
 <p>Filter by Category</p>
 <ul>
 	{% for category in contest_category_list %}
-	<li><a href="/contests/category/{{ category }}">{{ category|title}}</a></li>
+	<li><a href="/contests/category/{{ category.pk }}">{{ category|title}}</a></li>
 	{% endfor %}
 </ul>
 

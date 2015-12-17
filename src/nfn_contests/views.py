@@ -29,7 +29,8 @@ class FilterByCategory(generic.ListView):
 	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		return Contest.objects.filter(category='Design', is_approved=True).order_by('-date_started')
+		self.category = get_object_or_404(Category, pk=self.kwargs['category_pk'])
+		return Contest.objects.filter(category__pk=self.kwargs['category_pk'], is_approved=True).order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(FilterByCategory, self).get_context_data(*args, **kwargs)

@@ -6,8 +6,8 @@ app_name = 'contests'
 
 urlpatterns = [
 	url(r'^$', views.IndexView.as_view(), name='index'),	
-	url(r'^category/(?P<category_name>[\w-]+)/$', views.FilterByCategory.as_view(), name='by_category'),
-	url(r'^company/(?P<company_pk>[\w-]+)/$', views.FilterByOwner.as_view(), name='by_owner'),
+	url(r'^category/(?P<category_pk>[\w-]+)/$', views.FilterByCategory.as_view(), name='by_category'),
+	url(r'^(?i)company/(?P<company_pk>[\w-]+)/$', views.FilterByOwner.as_view(), name='by_owner'),
 	
 	url(r'^create/$', views.ContestCreate.as_view(), name='create_contest'),
 	url(r'^(?P<pk>[0-9]+)/update/$', views.ContestUpdate.as_view(), name='update_contest'),
