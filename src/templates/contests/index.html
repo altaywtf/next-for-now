@@ -27,12 +27,12 @@
 
 {% for contest in contest_list %}
 <ul style='border:1px solid black; padding: 20px;'>
-	<li>Contest Title: {{ contest.title }}</li>
-	<li>Contest Owner: {{ contest.owner }}</li>
-	<li>Contest Category: {{ contest.category|title }}</li>
-	<li>Contest Status: {{ contest.ongoing_check }}</li>
-	<li>Start Date: {{ contest.date_started }}</li>
-	<li>Deadline: {{ contest.date_deadline }}</li>
+	<li><b>Contest Title:</b> {{ contest.title }}</li>
+	<li><b>Contest Owner:</b> {{ contest.owner }}</li>
+	<li><b>Contest Category:</b> {{ contest.category|title }}</li>
+	<li><b>Contest Status:</b> {{ contest.is_ongoing }}</li>
+	<li><b>Start Date:</b> {{ contest.date_started }}</li>
+	<li><b>Deadline:</b> {{ contest.date_deadline }}</li>
 	<a href="/contests/{{ contest.pk }}">Details</a>
 </ul>
 {% endfor %}

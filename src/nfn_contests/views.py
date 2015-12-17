@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
 
-from .models import Contest, Submission
+from .models import Category, Contest, Submission
 from nfn_user.models import C_Owner
 
 from .forms import ContestForm, SubmissionForm
@@ -10,13 +10,17 @@ from .forms import ContestForm, SubmissionForm
 class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
 	context_object_name = 'contest_list'
+	allow_empty = True
+
+	def get_allow_empty(self):
+		return self.allow_empty
 
 	def get_queryset(self):
 		return Contest.objects.filter(is_approved=True).order_by('-date_started')
 	
 	def get_context_data(self, *args, **kwargs):
 		context = super(IndexView, self).get_context_data(*args, **kwargs)
-		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
+		context['contest_category_list'] = Category.objects.all()
 		context['contest_owner_list'] = C_Owner.objects.all()
 		return context
 
@@ -25,11 +29,11 @@ class FilterByCategory(generic.ListView):
 	context_object_name = 'contest_list'
 
 	def get_queryset(self):
-		return Contest.objects.filter(category=self.kwargs['category_name'], is_approved=True).order_by('-date_started')
+		return Contest.objects.filter(category='Design', is_approved=True).order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(FilterByCategory, self).get_context_data(*args, **kwargs)
-		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
+		context['contest_category_list'] = Category.objects.all()
 		context['contest_owner_list'] = C_Owner.objects.all()
 		return context
 
@@ -44,7 +48,7 @@ class FilterByOwner(generic.ListView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(FilterByOwner, self).get_context_data(*args, **kwargs)
-		context['contest_category_list'] = Contest.objects.get(pk=1).get_categories
+		context['contest_category_list'] = Category.objects.all()
 		context['contest_owner_list'] = C_Owner.objects.all()
 		return context
 

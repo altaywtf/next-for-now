@@ -1,6 +1,9 @@
 from django.contrib import admin
 
-from .models import Contest, Submission
+from .models import Category, Contest, Submission
+
+class CategoryAdmin(admin.ModelAdmin):
+	list_display = ('pk', 'name', 'hex_code')
 
 class ContestAdmin(admin.ModelAdmin):
 	list_display = ('pk', 'title', 'owner', 'category', 'date_started', 'date_deadline', 'is_ongoing')
@@ -8,5 +11,6 @@ class ContestAdmin(admin.ModelAdmin):
 class SubmissionAdmin(admin.ModelAdmin):
 	list_display = ('pk', 'contest', 'a_names', 'date_posted')
 
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Contest, ContestAdmin)
 admin.site.register(Submission, SubmissionAdmin)

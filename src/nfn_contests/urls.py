@@ -19,4 +19,3 @@ urlpatterns = [
 	url(r'^(?P<contest_pk>[0-9]+)/submissions/(?P<pk>[0-9]+)/delete/$', views.SubmissionDelete.as_view(), name='delete_submission'),
 	url(r'^(?P<contest_pk>[0-9]+)/submissions/(?P<pk>[0-9]+)$', views.SubmissionDetail.as_view(), name='view_submission'),
 ]
-

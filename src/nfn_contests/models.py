@@ -6,18 +6,18 @@ from django.utils import timezone
 from nfn_user.models import C_Owner
 from django.contrib.auth.models import User
 
+class Category(models.Model):
+	name = models.CharField('Name', max_length=30)
+	description = models.CharField('Description', max_length=100)
+	hex_code = models.CharField('Color Code', max_length=7)
+
+	def __unicode__(self):
+		return self.name
+
 class Contest(models.Model):
-	category_choices = (
-		('design', 'Design'),
-		('development', 'Development'),
-		('business', 'Business'),
-		('engineering', 'Engineering'),
-		('mediaproduction', 'Media Production'),
-		('creativewriting', 'Creative Writing'),
-	)
 	owner = models.ForeignKey(C_Owner, on_delete=models.CASCADE)
 	title = models.CharField(max_length=30)
-	category = models.CharField(choices=category_choices, max_length=30)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	description = models.CharField(max_length=50)
 	details = models.TextField()
 	image = models.ImageField(upload_to='../media/contests/', null=True, blank=True)
@@ -31,12 +31,6 @@ class Contest(models.Model):
 		if self.date_deadline > datetime.date.today():
 			return "Ongoing"
 		return "Finished"
-
-	@property
-	def get_categories(self):
-		categories = []
-		for category in self.category_choices: categories.append(str(category[0]))
-		return categories
 
 	def __unicode__(self):
 		return self.title
