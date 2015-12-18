@@ -108,7 +108,9 @@ class FilterByOwner(generic.ListView):
 # Contest CRUD
 
 # Contest Creation -accessible only for c_owner accounts-
-class ContestCreate(generic.CreateView):
+class ContestCreate(LoginRequiredMixin, generic.CreateView):
+	login_url = '/user/login/'
+	redirect_field_name = 'redirect_to'
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
@@ -124,7 +126,9 @@ class ContestDetail(generic.DetailView):
 	slug_field = 'slug'
 
 # Contest Update -accesible only for contest owner-
-class ContestUpdate(generic.UpdateView):
+class ContestUpdate(LoginRequiredMixin, generic.UpdateView):
+	login_url = '/user/login/'
+	redirect_field_name = 'redirect_to'
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
@@ -140,7 +144,9 @@ class ContestUpdate(generic.UpdateView):
 		return super(ContestUpdate, self).form_valid(form)
 
 # Contest Delete -accesible only for contest owner-
-class ContestDelete(generic.DeleteView):
+class ContestDelete(LoginRequiredMixin, generic.DeleteView):
+	login_url = '/user/login/'
+	redirect_field_name = 'redirect_to'
 	model = Contest
 	template_name = 'contests/_form_contest_delete.html'
 	success_url = reverse_lazy('contests:index')
