@@ -12,8 +12,26 @@
 {% if user.is_authenticated %}
 	<!-- & if group is applicant -->	
 	{% ifequal user.groups.all.0.name 'Applicant' %}
-	<p>Posting a Submission?</p>
-	<p><a href="/contests/{{contest.slug}}/apply">Post a Submission</a></p>
+		
+		{% if contest.submission_set.exists %}
+
+			{% for submission in contest.submission_set.all %}
+				{% if submission.applicant == user %}
+				<p><b>You have posted a submission to this contest on {{ submission.date_posted }}</b></p>
+				<p>You can <a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}">view</a>	, <a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}/update">update</a> or <a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}/delete">delete</a> your submission until the deadline comes!</p>
+
+				{% else %}
+				<p>Posting aa Submission?</p>
+				<p><a href="/contests/{{contest.slug}}/apply">Post a Submission</a></p>
+				{% endif %}
+			{% endfor %}	
+		
+		{% else %}
+
+		<p>Posting aa Submission?</p>
+		<p><a href="/contests/{{contest.slug}}/apply">Post a Submission</a></p>
+		{% endif %}
+
 	{% endifequal %}
 
 <!-- If not authenticated -->
@@ -21,38 +39,37 @@
 	<p>Posting a Submission</p>
 	<p><a href="/user/signup/applicant">Sign Up First Pl0x</a></p>
 {% endif %}
-<hr>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - -->
 
 <!-- Check if the user logged in is contest's owner -->
 {% if user.c_owner == contest.owner %}
-<p>WOW! Looks like you are the owner of this contest. Here's what you can do:</p>
-<ul>
-	<li><a href="/contests/{{contest.slug}}/update">Edit</a></li>
-	<li><a href="/contests/{{contest.slug}}/delete">Delete</a></li>
-	<li><a href=""></a>Announce Winner</li>
-</ul>
-
-<!-- Views the submissions -->
-<p>You can also view the submissions</p>
-{% if contest.submission_set %}
+	<p>WOW! Looks like you are the owner of this contest. Here's what you can do:</p>
 	<ul>
-	{% for submission in contest.submission_set.all %}
-		<li>
-		<b>Submitted by</b> {{ submission.applicant }}
-		<br>
-		<b>On</b> {{ submission.date_posted }}
-		<br>
-		<b><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}">View Submission</a></b>
-		</li>
-	{% endfor %}
+		<li><a href="/contests/{{contest.slug}}/update">Edit</a></li>
+		<li><a href="/contests/{{contest.slug}}/delete">Delete</a></li>
+		<li><a href=""></a>Announce Winner</li>
 	</ul>
 
-{% else %}
-	asdsad
+	<!-- Views the submissions -->
+	<h3>Submissions</h3>
+	{% if contest.submission_set.exists %}
+		<ul>
+		{% for submission in contest.submission_set.all %}
+			<li>
+			<b>Submitted by</b> {{ submission.applicant }}
+			<br>
+			<b>On</b> {{ submission.date_posted }}
+			<br>
+			<b><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}">View Submission</a></b>
+			</li>
+		{% endfor %}
+		</ul>
 
-{% endif %}
+	{% else %}
+		<p>No submissions yet! Maybe you should pay us a hundred million dollars so we can find u an intern?</p>
+
+	{% endif %}
 {% endif %}
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - -->
