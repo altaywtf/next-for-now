@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
@@ -132,6 +133,7 @@ class ContestDelete(generic.DeleteView):
 		if not obj.owner == self.request.user.c_owner:
 			raise Http404
 		return obj
+
 
 class SubmissionCreate(generic.CreateView):
 	form_class = SubmissionForm

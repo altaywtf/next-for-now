@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from nfn_user import urls as nfn_user_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^user/', include(nfn_user_urls)),
+    url(r'^user/', include('nfn_user.urls')),
     url(r'^(?i)contests/', include('nfn_contests.urls')),
 ]
