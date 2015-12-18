@@ -12,6 +12,10 @@
 {% if user == submission.applicant %}
 <hr>
 <p>You posted this!</p>
-<p><a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/update">Update Submission</a></p>
-<p><a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/delete">Delete Submission</a></p>
+<p>
+<a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/update">Update Submission</a> ||
+<a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/delete">Delete Submission</a>
+</p>
 {% endif %}
+
+<p><a href="/contests/{{submission.contest.slug}}">Go to Contest Page</a></p>

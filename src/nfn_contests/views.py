@@ -4,6 +4,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Category, Contest, Submission
@@ -11,6 +12,8 @@ from nfn_user.models import C_Owner
 
 from .forms import ContestForm, SubmissionForm
 
+####################################################################################
+# Contest Listing
 
 # Contest Listing: List All
 class IndexView(generic.ListView):
@@ -100,29 +103,31 @@ class FilterByOwner(generic.ListView):
 		context['contest_owner_list'] = C_Owner.objects.all()
 		return context
 
-# Contest Detail View
-class ContestDetail(generic.DetailView):
-	model = Contest
-	template_name = 'contests/details_contest.html'
-	slug_field = 'slug'
+
+####################################################################################
+# Contest CRUD
 
 # Contest Creation -accessible only for c_owner accounts-
 class ContestCreate(generic.CreateView):
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
-	success_url = '/contests/'
 
 	def form_valid(self, form):
 		form.instance.owner = self.request.user.c_owner
 		return super(ContestCreate, self).form_valid(form)
+
+# Contest Detail View
+class ContestDetail(generic.DetailView):
+	model = Contest
+	template_name = 'contests/details_contest.html'
+	slug_field = 'slug'
 
 # Contest Update -accesible only for contest owner-
 class ContestUpdate(generic.UpdateView):
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
-	success_url = '/contests/'
 
 	def get_object(self, *args, **kwargs):
 		obj = super(ContestUpdate, self).get_object(*args, **kwargs)
@@ -138,13 +143,17 @@ class ContestUpdate(generic.UpdateView):
 class ContestDelete(generic.DeleteView):
 	model = Contest
 	template_name = 'contests/_form_contest_delete.html'
-	success_url = '/contests/'
+	success_url = reverse_lazy('contests:index')
 
 	def get_object(self, *args, **kwargs):
 		obj = super(ContestDelete, self).get_object(*args, **kwargs)
 		if not obj.owner == self.request.user.c_owner:
 			raise Http404
 		return obj
+
+
+####################################################################################
+# Submission CRUD
 
 # Submission Creation
 class SubmissionCreate(LoginRequiredMixin, generic.CreateView):
@@ -153,7 +162,6 @@ class SubmissionCreate(LoginRequiredMixin, generic.CreateView):
 	form_class = SubmissionForm
 	model = Submission
 	template_name = 'contests/_form_submission.html'
-	success_url = '/contests/'
 
 	def get(self, request, *args, **kwargs):
 		self.contest = get_object_or_404(Contest, slug=self.kwargs['contest_slug'])
@@ -195,7 +203,6 @@ class SubmissionUpdate(LoginRequiredMixin, generic.UpdateView):
 	form_class = SubmissionForm
 	model = Submission
 	template_name = 'contests/_form_submission.html'
-	success_url = '/contests/'
 
 	# Check the submission
 	def get(self, request, *args, **kwargs):
@@ -219,7 +226,7 @@ class SubmissionDelete(LoginRequiredMixin, generic.DeleteView):
 	login_url = '/user/login/'
 	model = Submission
 	template_name = 'contests/_form_contest_delete.html'
-	success_url = '/contests/'
+	success_url = reverse_lazy('contests:index')
 
 	# Check the submission
 	def get(self, request, *args, **kwargs):

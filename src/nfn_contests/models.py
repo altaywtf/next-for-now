@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import datetime
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.utils import timezone
 from autoslug import AutoSlugField
 
@@ -30,6 +31,9 @@ class Contest(models.Model):
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
 	is_approved = models.BooleanField('Approved', default=True)
 
+	def get_absolute_url(self):
+		return reverse('contests:view_contest', kwargs={'slug': self.slug})
+
 	@property
 	def is_ongoing(self):
 		if self.date_deadline > datetime.date.today():
@@ -50,6 +54,9 @@ class Submission(models.Model):
 	feedback = models.TextField('Contest Owner\'s Feedback', blank=True, null=True)
 	is_winner = models.BooleanField('Winner!', default=False)
 	date_posted = models.DateTimeField('Submission Date', auto_now_add=True)
+
+	def get_absolute_url(self):
+		return reverse('contests:view_submission', kwargs={'contest_slug': self.contest.slug, 'pk': self.pk})
 
 	def __unicode__(self):
 		return '%s %s' % (self.contest, self.applicant)
