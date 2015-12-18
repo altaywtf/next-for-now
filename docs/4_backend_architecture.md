@@ -18,9 +18,7 @@ We are using Django web framework (version 1.9)
 - Create (/contests/create)
 - Edit (/contests/edit)
 - Delete (/contests/delete)
-
-
-###Submissions
+- **Submissions**
 - Posting a submission (/contests/{contest_id}/apply)
 - Submissions (/contests/{contest_id}/submissions)
 - Individual submission (/contests/{contest_id}/submissions/{submission_id})
@@ -28,11 +26,16 @@ We are using Django web framework (version 1.9)
 ---
 
 ##Models
-
+- User Model
+- Category Model
+- Contest Model
+- Submission Model
 ---
 
-##Viewers
-
+##Views
+- User Views
+- Contest Views
+- Submission Views
 ---
 
 ##Templates
