@@ -30,6 +30,7 @@ We are using Django web framework (version 1.9)
 - Category Model
 - Contest Model
 - Submission Model
+
 ---
 
 ##Views
