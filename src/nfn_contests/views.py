@@ -22,7 +22,7 @@ class IndexView(generic.ListView):
 		return self.allow_empty
 
 	def get_queryset(self):
-		return Contest.objects.filter(is_approved=True).order_by('-date_started')	
+		return Contest.objects.filter(is_approved=True).order_by('-date_started')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(IndexView, self).get_context_data(*args, **kwargs)
@@ -37,7 +37,7 @@ class FilterByOngoing(generic.ListView):
 
 	# ¯\_(ツ)_/¯
 	def get_queryset(self):
-		q = Contest.objects.filter(is_approved=True)
+		q = Contest.objects.filter(is_approved=True).order_by('-date_started')
 		context = []
 		for contest in q:
 			if contest.is_ongoing == "Ongoing":
@@ -57,7 +57,7 @@ class FilterByFinished(generic.ListView):
 
 	# ¯\_(ツ)_/¯
 	def get_queryset(self):
-		q = Contest.objects.filter(is_approved=True)
+		q = Contest.objects.filter(is_approved=True).order_by('-date_started')
 		context = []
 		for contest in q:
 			if contest.is_ongoing == "Finished":
