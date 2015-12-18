@@ -25,6 +25,12 @@
 	{% endfor %}
 </ul>
 
+<p>Filter by Status</p>
+<ul>
+	<li><a href="/contests/ongoing">Ongoing</a></li>
+	<li><a href="/contests/finished">Finished</a></li>
+</ul>
+
 {% for contest in contest_list %}
 <ul style='border:1px solid black; padding: 20px;'>
 	<li><b>Contest Title:</b> {{ contest.title }}</li>
