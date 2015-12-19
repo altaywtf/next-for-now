@@ -10,8 +10,8 @@ from nfn_user.models import C_Owner
 from django.contrib.auth.models import User
 
 class Category(models.Model):
-	name = models.CharField('Name', max_length=30)
-	slug = AutoSlugField(populate_from='name')
+	name = models.CharField('Name', max_length=30, blank=False, null=False)
+	slug = AutoSlugField(populate_from='name', blank=False, null=False)
 	description = models.CharField('Description', max_length=100)
 	hex_code = models.CharField('Color Code', max_length=7)
 
@@ -20,12 +20,12 @@ class Category(models.Model):
 
 class Contest(models.Model):
 	owner = models.ForeignKey(C_Owner, on_delete=models.CASCADE)
-	title = models.CharField(max_length=30)
+	title = models.CharField(max_length=30, blank=False, null=False)
 	slug = AutoSlugField(populate_from='title', unique_with=['owner__company_name'])
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
-	description = models.CharField(max_length=50)
+	description = models.CharField(max_length=100, blank=False, null=False)
 	details = models.TextField()
-	image = models.ImageField(upload_to='../media/contests/', null=True, blank=True)
+	image = models.ImageField(upload_to='contests', null=True, blank=True)
 	award = models.CharField(max_length=50)
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
@@ -50,7 +50,7 @@ class Submission(models.Model):
 	a_names = models.CharField('Applicant Name(s)', max_length=200)
 	a_details = models.TextField('Applicant Details')
 	s_details = models.TextField('Submission Details')
-	s_file = models.FileField('Submission File', upload_to='../media/submissions/', null=True, blank=True)
+	s_file = models.FileField('Submission File', upload_to='submissions', null=True, blank=True)
 	feedback = models.TextField('Contest Owner\'s Feedback', blank=True, null=True)
 	is_winner = models.BooleanField('Winner!', default=False)
 	date_posted = models.DateTimeField('Submission Date', auto_now_add=True)

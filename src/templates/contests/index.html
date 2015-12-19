@@ -1,44 +1,48 @@
-{% if user.is_authenticated %}
-	Username: {{ user.username }}
-	<br>
-	Email: {{ user.email }}
-	<br>
-	Groups: {{ user.groups.all }}
+{% extends "base.html" %}
 
-{% else %}
-	<a href="/user/login">Login Plox</a>	
-{% endif %}
+{% block content %}
+	{% if user.is_authenticated %}
+		Username: {{ user.username }}
+		<br>
+		Email: {{ user.email }}
+		<br>
+		Groups: {{ user.groups.all }}
 
-<hr>
+	{% else %}
+		<a href="/user/login">Login Plox</a>	
+	{% endif %}
 
-<p>Filter by Category</p>
-<ul>
-	{% for category in contest_category_list %}
-	<li><a href="/contests/category/{{ category.slug }}">{{ category|title }}</a></li>
+	<hr>
+
+	<p>Filter by Category</p>
+	<ul>
+		{% for category in contest_category_list %}
+		<li><a href="/contests/category/{{ category.slug }}">{{ category|title }}</a></li>
+		{% endfor %}
+	</ul>
+
+	<p>Filter by Contest Onwers</p>
+	<ul>
+		{% for owner in contest_owner_list %}
+		<li><a href="/contests/company/{{ owner.id }}">{{ owner.company_name }}</a></li>
+		{% endfor %}
+	</ul>
+
+	<p>Filter by Status</p>
+	<ul>
+		<li><a href="/contests/ongoing">Ongoing</a></li>
+		<li><a href="/contests/finished">Finished</a></li>
+	</ul>
+
+	{% for contest in contest_list %}
+	<ul style='border:1px solid black; padding: 20px;'>
+		<li><b>Contest Title:</b> {{ contest.title }}</li>
+		<li><b>Contest Owner:</b> {{ contest.owner }}</li>
+		<li><b>Contest Category:</b> {{ contest.category|title }}</li>
+		<li><b>Contest Status:</b> {{ contest.is_ongoing }}</li>
+		<li><b>Start Date:</b> {{ contest.date_started }}</li>
+		<li><b>Deadline:</b> {{ contest.date_deadline }}</li>
+		<a href="/contests/{{ contest.slug }}">Details</a>
+	</ul>
 	{% endfor %}
-</ul>
-
-<p>Filter by Contest Onwers</p>
-<ul>
-	{% for owner in contest_owner_list %}
-	<li><a href="/contests/company/{{ owner.id }}">{{ owner.company_name }}</a></li>
-	{% endfor %}
-</ul>
-
-<p>Filter by Status</p>
-<ul>
-	<li><a href="/contests/ongoing">Ongoing</a></li>
-	<li><a href="/contests/finished">Finished</a></li>
-</ul>
-
-{% for contest in contest_list %}
-<ul style='border:1px solid black; padding: 20px;'>
-	<li><b>Contest Title:</b> {{ contest.title }}</li>
-	<li><b>Contest Owner:</b> {{ contest.owner }}</li>
-	<li><b>Contest Category:</b> {{ contest.category|title }}</li>
-	<li><b>Contest Status:</b> {{ contest.is_ongoing }}</li>
-	<li><b>Start Date:</b> {{ contest.date_started }}</li>
-	<li><b>Deadline:</b> {{ contest.date_deadline }}</li>
-	<a href="/contests/{{ contest.slug }}">Details</a>
-</ul>
-{% endfor %}
+{% endblock %}
