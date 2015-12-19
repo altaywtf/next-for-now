@@ -171,6 +171,11 @@ class SubmissionCreate(LoginRequiredMixin, generic.CreateView):
 
 	def get(self, request, *args, **kwargs):
 		self.contest = get_object_or_404(Contest, slug=self.kwargs['contest_slug'])
+		
+		# if the request user has already made a submission to the contest
+		if self.contest.submission_set.filter(applicant=self.request.user).exists():
+			raise Http404 # this is going to be replaced with an error message
+
 		return super(SubmissionCreate, self).get(request, *args, **kwargs)
 
 	def form_valid(self, form, **kwargs):
