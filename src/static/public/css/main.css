@@ -1,0 +1,77 @@
+.navbar{
+	border-radius: 0!important;
+	margin-bottom: 0!important;
+}
+
+.navbar-inverse{
+	background: #1A3557!important;
+}
+
+.navbar-brand{
+	padding: 10px!important;
+}
+
+.navbar-brand > img{
+	padding: 0;
+	margin: 0 10px;
+}
+
+.nav .dropdown {
+	padding: 15px;
+}
+
+.nav .icon-text{
+	padding-left: 10px;
+}
+
+.page-title{
+	background: #4183D7;
+	margin-bottom: 10px;
+}
+
+.page-header{
+	background: none;
+	border: none!important;
+	margin: 0 auto!important;	
+}
+
+.page-header h2{
+	color: white;
+}
+
+.page-header small{
+	font-size: 18px;
+	color: white;
+	text-transform: uppercase;
+}
+
+.listing, .filters{
+	margin-top: 25px;
+}
+
+.panel-body {
+	text-align: center;
+}
+
+.panel-body > h3{
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.panel-body > h3 > a{
+	font-size: 20px;
+	text-decoration: none;
+	color: #354457;
+}
+
+.contest-info {
+	font-size: 14px;
+}
+
+.btn-contest-details {
+	margin-top: 10px;
+}
+
+.contest-details{
+	margin-top: 25px;
+}
