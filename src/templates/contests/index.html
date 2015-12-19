@@ -9,7 +9,7 @@
 		Groups: {{ user.groups.all }}
 
 	{% else %}
-		<a href="/user/login">Login Plox</a>	
+		<a href="/user/login/?next={{ request.path }}">Login Plox</a>	
 	{% endif %}
 
 	<hr>

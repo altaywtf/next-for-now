@@ -110,7 +110,6 @@ class FilterByOwner(generic.ListView):
 # Contest Creation -accessible only for c_owner accounts-
 class ContestCreate(LoginRequiredMixin, generic.CreateView):
 	login_url = '/user/login/'
-	redirect_field_name = 'redirect_to'
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
@@ -164,7 +163,6 @@ class ContestDelete(LoginRequiredMixin, generic.DeleteView):
 # Submission Creation
 class SubmissionCreate(LoginRequiredMixin, generic.CreateView):
 	login_url = '/user/login/'
-	redirect_field_name = 'redirect_to'
 	form_class = SubmissionForm
 	model = Submission
 	template_name = 'contests/_form_submission.html'

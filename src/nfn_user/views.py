@@ -35,9 +35,9 @@ def loginView(request):
 			user = authenticate(username=request.POST['username'],password=request.POST['password'])
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect(request.POST["next"])
+				return HttpResponseRedirect(request.GET["next"])
 			else:
-				return HttpResponseRedirect(request.POST["next"])
+				return HttpResponseRedirect(request.GET["next"])
 		else:
 			return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
 	else:
