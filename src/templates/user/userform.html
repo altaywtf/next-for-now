@@ -2,6 +2,7 @@
 	{% csrf_token %}
 	<table>
 		{{ form }}
+		<input type="hidden" name="next" value="{{next}}">
 		<input type="submit" value="OK">
 	</table>
 </form>

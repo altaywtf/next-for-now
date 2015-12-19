@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.template import RequestContext
+from django.shortcuts import render, render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import C_Owner
@@ -34,14 +35,14 @@ def loginView(request):
 			user = authenticate(username=request.POST['username'],password=request.POST['password'])
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect(REDIRECT_PAGE)
+				return HttpResponseRedirect(request.POST["next"])
 			else:
-				return HttpResponseRedirect(REDIRECT_PAGE)
+				return HttpResponseRedirect(request.POST["next"])
 		else:
-			return HttpResponseRedirect(REDIRECT_PAGE)
+			return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
 	else:
 		form = LoginForm()
-	return render(request, 'user/userform.html', {'form':form})
+	return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
 
 def logoutView(request):
 	logout(request)
