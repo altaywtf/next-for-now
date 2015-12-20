@@ -16,3 +16,11 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		return Contest.objects.filter(is_approved=True).order_by('-date_started')
+
+# AboutPage
+class AboutView(generic.TemplateView):
+	template_name = 'other/about.html'
+
+# Contact (This will be changed as FormView)
+class ContactView(generic.TemplateView):
+	template_name = 'other/contact.html'

@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view()),
+    url(r'^about/', views.AboutView.as_view()),
+    url(r'^contact/', views.ContactView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('nfn_user.urls')),
     url(r'^contests/', include('nfn_contests.urls')),
