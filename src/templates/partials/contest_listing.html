@@ -76,10 +76,10 @@
 
 					<!-- Card Body -->	
 	  					<div class="panel-body">
-	  						<h3><a href="{% url 'contests:view_contest' contest.slug %}">{{ contest.title}}</a></h3>
-	  						<h4 class="contest-info">by <a href="{% url 'contests:by_owner' contest.owner.pk %}">{{ contest.owner }}</a>
-	  						<h4 class="contest-info">ends on <a href="#">{{ contest.date_deadline }}</a></h4>
-	  						<a href="{% url 'contests:view_contest' contest.slug %}" class="btn btn-default btn-contest-details">View Details</a>
+	  						<h4 class="contest-title"><a href="{% url 'contests:view_contest' contest.slug %}">{{ contest.title}}</a></h4>
+	  						<p>{{ contest.description }}</p>
+	  						<h5 class="contest-info">by <a href="{% url 'contests:by_owner' contest.owner.pk %}">{{ contest.owner }}</a></h5>
+	  						<h5 class="contest-info">ends on <a href="#">{{ contest.date_deadline }}</a></h5>
 	  					</div>
 	  				<!-- /Card Body -->
 	  				</div>
