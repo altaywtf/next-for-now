@@ -142,3 +142,11 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 	margin-top: 10px;
 	margin-bottom: 15px;
 }
+
+.form-login{
+	margin-top: 25px;
+}
+
+.form-login input {
+	text-align: center!important;
+}

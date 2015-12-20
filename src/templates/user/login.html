@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page-name %}
+	<h2>Login</h2>
+{% endblock %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+
+<div class="panel panel-primary form-login">
+  <div class="panel-heading">
+
+  </div>
+  <div class="panel-body text-center">
+    <form method="post" action"">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{next}}">
+			{% bootstrap_form form layout='inline' %}
+			{% buttons %}
+	        <button type="submit" class="btn btn-primary btn-block">Login</button>
+	       	{% endbuttons %}
+		</form>
+  </div>
+</div>
+
+		
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+{% endblock %}

@@ -49,12 +49,12 @@ def loginView(request):
 			else:
 				return HttpResponseRedirect(request.GET["next"])
 		else:
-			return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
+			return render_to_response('user/login.html', {'form':form}, context_instance=RequestContext(request))
 	else:
 		if request.user.is_authenticated():
 			return HttpResponseRedirect('/')
 		form = LoginForm()
-	return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
+	return render_to_response('user/login.html', {'form':form}, context_instance=RequestContext(request))
 
 def logoutView(request):
 	logout(request)
