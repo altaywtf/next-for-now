@@ -16,6 +16,8 @@ def cOwnerSignUpView(request):
 			form.save()
 			return HttpResponseRedirect(REDIRECT_LOGIN)
 	else:
+		if request.user.is_authenticated():
+			return HttpResponseRedirect('/')
 		form = COwnerCreationForm()
 	return render(request, 'user/userform.html', {'form':form})
 
@@ -26,6 +28,8 @@ def applicantSignUpView(request):
 			form.save()
 			return HttpResponseRedirect(REDIRECT_LOGIN)
 	else:
+		if request.user.is_authenticated():
+			return HttpResponseRedirect('/')
 		form = ApplicantCreationForm()
 	return render(request, 'user/userform.html', {'form':form})
 
@@ -42,6 +46,8 @@ def loginView(request):
 		else:
 			return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
 	else:
+		if request.user.is_authenticated():
+			return HttpResponseRedirect('/')
 		form = LoginForm()
 	return render_to_response('user/userform.html', {'form':form}, context_instance=RequestContext(request))
 
