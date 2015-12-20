@@ -9,6 +9,11 @@ from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm
 REDIRECT_PAGE = '/user/signup/cowner/'
 REDIRECT_LOGIN = '/user/login'
 
+def SignUpView(request):
+	if request.user.is_authenticated():
+		return HttpResponseRedirect('/')
+	return render(request, 'user/signup.html')
+
 def cOwnerSignUpView(request):
 	if request.method == 'POST':
 		form = COwnerCreationForm(request.POST)

@@ -116,3 +116,25 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 .btn-home{
 	width: 75%;
 }
+
+.signup-container{
+	margin-top: 15px;
+}
+
+.panel-cowner{
+	border-top: 3px solid #6A1B9A!important;
+}
+
+.panel-signup-title{
+	margin-bottom: 15px;
+}
+
+.panel-applicant{
+	border-top: 3px solid #D84315!important;
+}
+
+.panel-signup-img{
+	width: 72px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
