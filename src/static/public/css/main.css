@@ -70,6 +70,7 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 .panel-body > h3{
 	margin-top: 0px;
 	margin-bottom: 20px;
+	line-height: 20px;
 }
 
 .panel-body > h3 > a{

@@ -26,7 +26,7 @@ class Contest(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	description = models.CharField(max_length=100, blank=False, null=False)
 	details = models.TextField()
-	image = models.ImageField(upload_to='contests', null=True, blank=True)
+	image = models.ImageField(upload_to='contests')
 	award = models.CharField(max_length=50)
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)

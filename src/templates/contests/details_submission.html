@@ -3,6 +3,8 @@
 <p><b>Submission Details:</b> {{ submission.s_details }}</p>
 <p><b>Date Posted: </b>{{ submission.date_posted }}</p>
 
+<p>{{submission.s_file}}</p>
+
 {% if user.c_owner == submission.contest.owner %}
 <hr>
 <p>Did you like it?</p> 
