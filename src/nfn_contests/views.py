@@ -114,6 +114,11 @@ class ContestCreate(LoginRequiredMixin, generic.CreateView):
 	model = Contest
 	template_name = 'contests/_form_contest.html'
 
+	def dispatch(self, request, *args, **kwargs):
+		if not self.request.user.groups.filter(name="Contest Owner"):
+			raise Http404
+		return super(ContestCreate, self).dispatch(request, *args, **kwargs)
+
 	def form_valid(self, form):
 		form.instance.owner = self.request.user.c_owner
 		return super(ContestCreate, self).form_valid(form)
