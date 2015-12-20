@@ -2,6 +2,14 @@
 
 {% block title %}{{contest.title}} by {{contest.owner}} | Next For Now{% endblock %}
 
+{% block custom-title-color %} 
+.page-title{
+	background: {{ contest.category.hex_code }}!important; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, {{ contest.category.hex_code }} , {{ contest.category.hex_code_2 }})!important;
+	background: linear-gradient(to left, {{ contest.category.hex_code }} , {{ contest.category.hex_code_2 }})!important;
+	}
+{% endblock %}
+
 {% block page-name %}
 	<h2>{{contest.title}} <small>by {{contest.owner}}</small></h2>
 {% endblock %}
@@ -14,6 +22,7 @@
 				<img src="http://lorempixel.com/640/400/abstract/" alt="" width="100%">
 			</div>
 			<div class="col-md-6">
+					<p><b>Category:</b> {{ contest.category }}</p>
 					<p><b>Description</b>: {{ contest.description }}</p>
 					<p><b>Details</b>: {{ contest.details }}</p>
 					<p><b>Started</b>: {{ contest.date_started }}</p>

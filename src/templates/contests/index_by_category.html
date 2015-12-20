@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Contests in {{ category.0.name }}{% endblock %}
+
+{% block custom-title-color %} 
+.page-title{
+	background: {{ category.0.hex_code }}!important; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, {{ category.0.hex_code }} , {{ category.0.hex_code_2 }})!important;
+	background: linear-gradient(to left, {{ category.0.hex_code }} , {{ category.0.hex_code_2 }})!important;
+	}
+{% endblock %}
+
+{% block page-name %}
+	<h2>{{ category.0.name }}</h2>
+{% endblock %}
+
+{% block content %}
+	{% include "partials/contest_listing.html" %}
+{% endblock %}

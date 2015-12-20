@@ -13,7 +13,8 @@ class Category(models.Model):
 	name = models.CharField('Name', max_length=30, blank=False, null=False)
 	slug = AutoSlugField(populate_from='name', blank=False, null=False)
 	description = models.CharField('Description', max_length=100)
-	hex_code = models.CharField('Color Code', max_length=7)
+	hex_code = models.CharField('Color Code', max_length=7, default="#212121")
+	hex_code_2 = models.CharField('Second Color Code (For Gradients)', max_length=7, default="#212121")
 
 	def __unicode__(self):
 		return self.name
