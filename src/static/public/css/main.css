@@ -49,6 +49,7 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 }
 
 .page-header h2{
+	text-align: center;
 	color: white;
 }
 
