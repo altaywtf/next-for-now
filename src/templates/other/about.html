@@ -10,7 +10,13 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">about content</div>
+		<div class="col-md-8 col-md-push-2">
+		{% load staticfiles %}
+			<video width="100%" autoplay controls>
+  				<source src="{% static 'public/img/about.webm' %}">
+				Your browser does not support the video tag.
+			</video>
+		</div>
 	</div>
 </div>
 
