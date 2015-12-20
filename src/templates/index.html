@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+	<title>{% block title %}Next For Now{% endblock %}</title>
+
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'public/css/main.css' %}">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<style>
+	.navbar{
+		padding-top: 15px;
+		background: none!important;
+		border: none!important;
+		box-shadow: none!important;
+	}
+</style>
+
+</head>
+<body>
+
+	<section id="home-header">
+		{% include "partials/navbar.html" %}
+		<div class="text-container">
+			<div class="container">
+				<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<h1>Make it better.</h1>
+							<p>N4NOW connects the creative college students, fresh graduates and internship candidates to the prominent organizations of industry they want to be a part of.</p>
+						</div>
+						<div class="col-md-2"></div>
+					</div>
+			</div>
+		</div>
+		
+		<div class="container">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<a href="" class="btn btn-primary btn-lg">Learn More</a>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+
+</body>
+</html>

@@ -75,3 +75,25 @@
 .contest-details{
 	margin-top: 25px;
 }
+
+#home-header{
+	height: 98vh;
+	background: url(../img/bg.png) center center no-repeat;
+	text-align: center;
+}
+
+.text-container{
+	margin-top: 80px;
+	margin-bottom: 15px;
+	color: white!important;
+}
+
+.text-container h1{
+	font-size: 64px;
+	margin-bottom: 32px;
+	color: white;
+}
+
+.text-container p{
+	font-size: 18px;
+}
