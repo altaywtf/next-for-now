@@ -1,4 +1,25 @@
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+{% extends "base.html" %}
+
+{% block page-name %}
+	<h2>Confirm Deletion</h2>
+{% endblock %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="container">
+<div class="row">
+<div class="col-md-3"></div>
+	<div class="col-md-6" style="background: #f1f1f1; padding:20px 50px; text-align: center;">
+		<h5>Are you sure you want to delete "{{ object }}"?</h5>
+		<br>
+		<form action="" method="post">
+			{% csrf_token %}
+			<a href="javascript:history.back()" class="btn btn-primary">Cancel</a>
+			&nbsp;
+			<button type="submit" class="btn btn-danger" value="Confirm">DELETE</button>
+		</form>
+	</div>
+</div>
+
+</div>
+{% endblock %}

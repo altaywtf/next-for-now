@@ -63,7 +63,10 @@
 						<!-- If not authenticated -->
 						{% else %}
 						<p>You want to post a submission?</p>
-						<p><a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a></p>
+						<p>
+							<a href="/user/login/?next={{ request.path }}" class="btn btn-default">Click Here to Log in</a>
+							<a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a>
+						</p>
 						{% endif %}
 
 

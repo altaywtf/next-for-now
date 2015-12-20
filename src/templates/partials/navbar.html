@@ -43,7 +43,7 @@
 					{% ifequal user.groups.all.0.name 'Contest Owner' %}
 					<li class="dropdown">
 						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.username}}</span>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.c_owner.company_name}}</span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<li><a href="#"><b>User Type: </b>Contest Owner</a></li>
