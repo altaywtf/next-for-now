@@ -19,53 +19,36 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-	<script>
-	$(document).ready(function(){
-    $(".home-container").hide(0).delay(100).fadeIn(1000)
-    $(".btn-home").hide(0).delay(5000).fadeIn(100)
-
-	});
-	</script>
-
-<style>
-	.navbar{
-		padding-top: 15px;
-		background: none!important;
-		border: none!important;
-		box-shadow: none!important;
-	}
-</style>
+	<style>
+		.navbar{
+			padding-top: 15px;
+			background: none!important;
+			border: none!important;
+			box-shadow: none!important;
+		}
+	</style>
 
 </head>
 <body>
 
 	<section id="home-header">
 		{% include "partials/navbar.html" %}
+
 		<div class="home-container">
-			<div class="text-container">
-				<div class="container">
-					<div class="row">
-							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<h1>Make it better.</h1>
-								<p>N4NOW connects the creative college students, fresh graduates and internship candidates to the prominent organizations of industry they want to be a part of.</p>
-							</div>
-							<div class="col-md-2"></div>
-						</div>
-				</div>
-			</div>
-			
 			<div class="container">
-					<div class="row">
-						<div class="col-md-4"></div>
-						<div class="col-md-4">
-							<a href="/about" class="btn btn-primary btn-lg btn-home">Learn More</a>
-						</div>
-						<div class="col-md-4"></div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<h1>Make it better.</h1>
+						<p>N4NOW connects the creative college students, fresh graduates and internship candidates to the prominent organizations of industry they want to be a part of.</p>
+						<a href="/about" class="btn btn-primary btn-lg btn-home">Learn More</a>
+
 					</div>
+					<div class="col-md-2"></div>
 				</div>
-			</div>
+			</div>		
 		</div>
+
 	</section>
 	
 	

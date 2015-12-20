@@ -91,30 +91,33 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 }
 
 #home-header{
-	height: 800px;
+	min-height: 100vh;
 	background: url(../img/bg.png) center center no-repeat;
 	background-size: cover;
 	text-align: center;
 }
 
-.text-container{
-	margin-top: 15vh;
-	margin-bottom: 15px;
-	color: white!important;
+.home-container{
+	display: inline-flex;
+  	align-items: center;
+  	text-align: center;
+  	min-height: 80vh;
+  	color: white!important;
 }
 
-.text-container h1{
+.home-container h1{
 	font-size: 64px;
-	margin-bottom: 32px;
+	margin-bottom: 48px;
 	color: white;
 }
 
-.text-container p{
+.home-container p{
 	font-size: 18px;
+	margin-bottom: 48px;
 }
 
 .btn-home{
-	width: 75%;
+	width: 40%;
 }
 
 .signup-container{
