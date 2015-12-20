@@ -3,8 +3,19 @@
 	margin-bottom: 0!important;
 }
 
+.navbar-collapse a{
+	font-size: 14px;
+	color: #E3F2FD!important;
+}
+
+.navbar-collapse a:hover{
+	color: white!important;
+}
+
 .navbar-inverse{
-	background: #1A3557!important;
+background: #1A3557!important; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #4b6cb7 , #182848)!important; /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .navbar-brand{
@@ -96,4 +107,8 @@
 
 .text-container p{
 	font-size: 18px;
+}
+
+.btn-home{
+	width: 75%;
 }
