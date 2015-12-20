@@ -7,77 +7,96 @@
 {% endblock %}
 
 {% block content %}
+<!-- Filtering -->
 	<div class="filters">
 		<div class="container">
 			<div class="row">
-			<div class="col-md-3"></div>
-				<div class="col-md-2 col-xs-6">
-					<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							Filter by Category
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							{% for category in contest_category_list %}
-							<li>
-								<a href="/contests/category/{{ category.slug }}">{{ category|title }}</a>
-							</li>
-							{% endfor %}
-						</ul>
+				<div class="col-md-3"></div>
+					<!-- Filter by Category-->
+					<div class="col-md-2 col-xs-6">
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								Filter by Category
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								{% for category in contest_category_list %}
+								<li>
+									<a href="/contests/category/{{ category.slug }}">{{ category|title }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
 					</div>
-				</div>
-
-				<div class="col-md-2 col-xs-6">
-					<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							Filter by Company
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-							{% for company in contest_owner_list %}
-							<li>
-								<a href="/contests/company/{{ company.id }}">{{ company.company_name }}</a>
-							</li>
-							{% endfor %}
-						</ul>
+					<!-- /Filter by Category-->
+					
+					<!-- Filter by Company-->
+					<div class="col-md-2 col-xs-6">
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								Filter by Company
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								{% for company in contest_owner_list %}
+								<li>
+									<a href="/contests/company/{{ company.id }}">{{ company.company_name }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
 					</div>
-				</div>
-
-				<div class="col-md-2 col-xs-6">
-					<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							Filter by Status
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-							<li><a href="/contests/ongoing">Ongoing</a></li>
-							<li><a href="/contests/finished">Finished</a></li>
-						</ul>
+					<!-- /Filter by Company-->
+					
+					<!-- Filter by Status-->
+					<div class="col-md-2 col-xs-6">
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								Filter by Status
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+								<li><a href="/contests/ongoing">Ongoing</a></li>
+								<li><a href="/contests/finished">Finished</a></li>
+							</ul>
+						</div>
 					</div>
-				</div>
+					<!-- Filter by Status-->
 			</div>
-		</div></div>
+		</div>
+	</div>
+<!-- /Filtering -->
 
+<!-- Listing -->
 	<div class="listing">
 		<div class="container">
 			<div class="row">
+				<!-- Contest Card -->
 				{% for contest in contest_list %}
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="panel panel-default">
+					<!-- Contest Image -->
 						<div class="panel-img">
 							<a href="{% url 'contests:view_contest' contest.slug %}">
 								<img src="http://lorempixel.com/g/263/188/" alt="">
 							</a>
 						</div>
+					<!-- /Contest Image -->
+
+					<!-- Card Body -->	
 	  					<div class="panel-body">
 	  						<h3><a href="{% url 'contests:view_contest' contest.slug %}">{{ contest.title}}</a></h3>
 	  						<h4 class="contest-info">by <a href="{% url 'contests:by_owner' contest.owner.pk %}">{{ contest.owner }}</a>
 	  						<h4 class="contest-info">ends on <a href="#">{{ contest.date_deadline }}</a></h4>
 	  						<a href="{% url 'contests:view_contest' contest.slug %}" class="btn btn-default btn-contest-details">View Details</a>
 	  					</div>
+	  				<!-- /Card Body -->
 	  				</div>
 				</div>
 				{% endfor %}
+				<!-- /Contest Card -->
 			</div>
-		</div></div>
+		</div>
+	</div>
+<!-- /Listing -->
 {% endblock %}

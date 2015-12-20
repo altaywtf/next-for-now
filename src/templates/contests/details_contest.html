@@ -38,7 +38,6 @@
 						{% ifequal user.groups.all.0.name 'Applicant' %}
 		
 							{% if contest.submission_set.exists %}
-
 								{% for submission in contest.submission_set.all %}
 									{% if submission.applicant == user %}
 										<p><b>You have posted a submission to this contest on {{ submission.date_posted }}</b></p>
