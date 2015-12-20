@@ -7,9 +7,9 @@ C_OWNER_GROUP = 'Contest Owner'
 APPLICANT_GROUP = 'Applicant'
 
 class COwnerCreationForm(UserCreationForm):
-	website = forms.CharField(label='Website', max_length=200,)
+	website = forms.CharField(label='Website', max_length=200)
 	company_name = forms.CharField(label='Company Name', max_length=200,)
-	company_address = forms.CharField(label='Company Address',widget=forms.Textarea)
+	company_address = forms.CharField(label='Company Address', widget=forms.Textarea)
 
 	class Meta:
 		model = User

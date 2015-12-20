@@ -1,8 +1,26 @@
-<form method="post" action"">
-	{% csrf_token %}
-	<table>
-		{{ form }}
-		<input type="hidden" name="next" value="{{next}}">
-		<input type="submit" value="OK">
-	</table>
-</form>
+{% extends "base.html" %}
+
+{% block page-name %}
+	<h2>User Form</h2>
+{% endblock %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6" style="background: #f9f9f9; padding:20px 50px;">
+		<form method="post" action"">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{next}}">
+			{% bootstrap_form form %}
+			{% buttons %}
+			<button type="reset" class="btn btn-default">Cancel</button>
+	        <button type="submit" class="btn btn-primary">Submit</button>
+	        {% endbuttons %}
+		</form>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
+{% endblock %}

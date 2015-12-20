@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nfn_user',
     'nfn_contests',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [

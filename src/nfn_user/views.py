@@ -7,13 +7,14 @@ from .models import C_Owner
 from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm
 
 REDIRECT_PAGE = '/user/signup/cowner/'
+REDIRECT_LOGIN = '/user/login'
 
 def cOwnerSignUpView(request):
 	if request.method == 'POST':
 		form = COwnerCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect(REDIRECT_PAGE)
+			return HttpResponseRedirect(REDIRECT_LOGIN)
 	else:
 		form = COwnerCreationForm()
 	return render(request, 'user/userform.html', {'form':form})
@@ -23,7 +24,7 @@ def applicantSignUpView(request):
 		form = ApplicantCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect(REDIRECT_PAGE)
+			return HttpResponseRedirect(REDIRECT_LOGIN)
 	else:
 		form = ApplicantCreationForm()
 	return render(request, 'user/userform.html', {'form':form})
@@ -46,4 +47,4 @@ def loginView(request):
 
 def logoutView(request):
 	logout(request)
-	return HttpResponseRedirect(REDIRECT_PAGE)
+	return HttpResponseRedirect('/')
