@@ -6,17 +6,18 @@
 
 {% block content %}
 {% load bootstrap3 %}
+<br>
 <div class="container">
 <div class="row">
 {{ contest }}
-<div class="col-md-3"></div>
-	<div class="col-md-6" style="background: #f5f5f5; padding:20px 50px;">
+<div class="col-md-4"></div>
+	<div class="col-md-4" style="background: #f5f5f5; padding:20px 50px;">
 	<form action="." method="POST">		
 	<fieldset>
 		{% csrf_token %}
 		{% bootstrap_form form %}
 	    {% buttons %}
-	        <button type="submit" class="btn btn-success btn-block">Submit</button>
+	        <button type="submit" class="btn btn-success btn-block">Select</button>
 	    {% endbuttons %}
 	    </fieldset>
 		</form>
