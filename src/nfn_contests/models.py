@@ -26,7 +26,7 @@ class Contest(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	description = models.CharField(max_length=100, blank=False, null=False)
 	details = models.TextField()
-	image = models.ImageField(upload_to='contests')
+	image = models.ImageField(upload_to='contests', default='deneme')
 	award = models.CharField(max_length=50)
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
@@ -53,11 +53,21 @@ class Submission(models.Model):
 	s_details = models.TextField('Submission Details')
 	s_file = models.FileField('Submission File', upload_to='submissions', null=True, blank=True)
 	feedback = models.TextField('Contest Owner\'s Feedback', blank=True, null=True)
-	is_winner = models.BooleanField('Winner!', default=False)
 	date_posted = models.DateTimeField('Submission Date', auto_now_add=True)
 
 	def get_absolute_url(self):
 		return reverse('contests:view_submission', kwargs={'contest_slug': self.contest.slug, 'pk': self.pk})
 
 	def __unicode__(self):
-		return '%s %s' % (self.contest, self.applicant)
+		return '%s' % (self.a_names)
+
+
+class Winner(models.Model):
+	contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+	winner = models.ForeignKey(Submission, on_delete=models.CASCADE)
+
+	def get_absolute_url(self):
+		return reverse('contests:view_contest', kwargs={'slug': self.contest.slug})
+
+	def __unicode__(self):
+		return 'Contest: %s, Winner: %s' % (self.contest, self.winner)

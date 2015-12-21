@@ -34,8 +34,8 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 	padding: 15px;
 }
 
-.nav .icon-text{
-	padding-left: 10px;
+.icon-text{
+	padding-left: 10px!important;
 }
 
 .page-title{
@@ -156,7 +156,7 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 	font-size: 16px;
 }
 
-.dl-contest{
+.contest-details, .dl-contest{
 	font-size: 14px;
 }
 
@@ -171,4 +171,17 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 .list-group-item-text-details{
 	color: black!important;
 	font-size: 14px;
+}
+
+.submission-container{
+	margin-top: 25px;
+}
+
+.submission-contest-link{
+	color: white;
+}
+
+.submission-contest-link:hover{
+	text-decoration: none;
+	color: #81D4FA;
 }

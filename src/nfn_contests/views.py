@@ -7,10 +7,10 @@ from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Category, Contest, Submission
+from .models import Category, Contest, Submission, Winner
 from nfn_user.models import C_Owner
 
-from .forms import ContestForm, SubmissionForm
+from .forms import ContestForm, SubmissionForm, FeedbackForm, WinnerForm
 
 ####################################################################################
 # Contest Listing
@@ -134,7 +134,6 @@ class ContestDetail(generic.DetailView):
 # Contest Update -accesible only for contest owner-
 class ContestUpdate(LoginRequiredMixin, generic.UpdateView):
 	login_url = '/user/login/'
-	redirect_field_name = 'redirect_to'
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
@@ -152,7 +151,6 @@ class ContestUpdate(LoginRequiredMixin, generic.UpdateView):
 # Contest Delete -accesible only for contest owner-
 class ContestDelete(LoginRequiredMixin, generic.DeleteView):
 	login_url = '/user/login/'
-	redirect_field_name = 'redirect_to'
 	model = Contest
 	template_name = 'contests/_form_contest_delete.html'
 	success_url = reverse_lazy('contests:index')
@@ -233,8 +231,6 @@ class SubmissionUpdate(LoginRequiredMixin, generic.UpdateView):
 		return obj
 
 	def form_valid(self, form, **kwargs):
-		form.instance.applicant = self.request.user
-		form.instance.contest = Contest.objects.get(slug=self.kwargs['contest_slug'])
 		return super(SubmissionUpdate, self).form_valid(form)
 		
 # Submission Delete
@@ -255,3 +251,50 @@ class SubmissionDelete(LoginRequiredMixin, generic.DeleteView):
 		if not obj.applicant == self.request.user:
 			raise Http404
 		return obj
+
+####################################################################################
+
+# Submission Feedback
+class FeedbackCreate(LoginRequiredMixin, generic.UpdateView):
+	login_url = '/user/login'
+	model = Submission
+	form_class = FeedbackForm
+	template_name = 'contests/_form_submission_feedback.html'
+
+	# Check the contest
+	def get(self, request, *args, **kwargs):
+		self.submission = get_object_or_404(Submission, pk=self.kwargs['pk'])
+		return super(FeedbackCreate, self).get(request, *args, **kwargs)
+
+	# Make sure request.user is the contest owner of it
+	def get_object(self, *args, **kwargs):
+		obj = super(FeedbackCreate, self).get_object(*args, **kwargs)
+		if obj.applicant == self.request.user:
+			raise Http404
+		if not obj.contest.owner == self.request.user.c_owner:
+			raise Http404
+		return obj
+
+	def form_valid(self, form):
+		return super(FeedbackCreate, self).form_valid(form)
+
+
+# Winner Form
+class ContestWinner(LoginRequiredMixin, generic.CreateView):
+	login_url = '/user/login'
+	model = Winner
+	form_class = WinnerForm
+	template_name = 'contests/_form_contest_winner.html'
+
+	# Check the contest
+	def get(self, request, *args, **kwargs):
+		self.contest = get_object_or_404(Contest, slug=self.kwargs['slug'])
+		if not self.request.user.groups.filter(name="Contest Owner"):
+			raise Http404
+		if self.contest.owner == self.request.user.c_owner:
+			return super(ContestWinner, self).get(request, *args, **kwargs)
+
+	def form_valid(self, form):
+		form.instance.contest = Contest.objects.get(slug=self.kwargs['slug'])
+		form.instance.winner = Submission.objects.get(pk=self.kwargs['submission_pk'])
+		return super(ContestWinner, self).form_valid(form)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contest, Submission
+from .models import Contest, Submission, Winner
 
 class ContestForm(forms.ModelForm):
 	class Meta:
@@ -14,17 +14,21 @@ class ContestForm(forms.ModelForm):
 class SubmissionForm(forms.ModelForm):
   class Meta:
     model = Submission
-    fields = ['a_names', 'a_details', 's_details', 's_file']
+    fields = ['a_names', 'a_details', 's_details', 's_file', 'feedback']
     widgets = {
           'a_details': forms.Textarea(attrs={'rows': 3}),
           's_details': forms.Textarea(attrs={'rows': 3}),
     }
 
-'''
+class FeedbackForm(forms.ModelForm):
+  class Meta:
+    model = Submission
+    fields = ['feedback']
+    widgets = {
+      'feedback': forms.Textarea(attrs={'rows': 3}),
+    }
 
-class FeedBackCreationForm(forms.Form):
-	class Meta:
-		model = Submission
-		fields = ['feedback', 'is_winner']
-
-'''
+class WinnerForm(forms.ModelForm):
+  class Meta:
+    model = Winner
+    fields = ['contest', 'winner']

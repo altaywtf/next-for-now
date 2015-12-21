@@ -15,9 +15,12 @@ urlpatterns = [
 	url(r'^(?P<slug>[\w-]+)/update/$', views.ContestUpdate.as_view(), name='update_contest'),
 	url(r'^(?P<slug>[\w-]+)/delete/$', views.ContestDelete.as_view(), name='delete_contest'),
 	url(r'^(?P<slug>[\w-]+)/$', views.ContestDetail.as_view(), name='view_contest'),
+	url(r'^(?P<slug>[\w-]+)/winner/(?P<submission_pk>[0-9]+)/$', views.ContestWinner.as_view(), name='contest_winner'),
 
 	url(r'^(?P<contest_slug>[\w-]+)/apply/$', views.SubmissionCreate.as_view(), name='post_submission'),
 	url(r'^(?P<contest_slug>[\w-]+)/submissions/(?P<pk>[0-9]+)/update/$', views.SubmissionUpdate.as_view(), name='update_submission'),
 	url(r'^(?P<contest_slug>[\w-]+)/submissions/(?P<pk>[0-9]+)/delete/$', views.SubmissionDelete.as_view(), name='delete_submission'),
-	url(r'^(?P<contest_slug>[\w-]+)/submissions/(?P<pk>[0-9]+)$', views.SubmissionDetail.as_view(), name='view_submission'),
+	url(r'^(?P<contest_slug>[\w-]+)/submissions/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view(), name='view_submission'),
+
+	url(r'^(?P<contest_slug>[\w-]+)/submissions/(?P<pk>[0-9]+)/feedback/$', views.FeedbackCreate.as_view(), name='submission_feedback')
 ]

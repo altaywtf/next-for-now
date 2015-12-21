@@ -11,12 +11,12 @@
 {% endblock %}
 
 {% block page-name %}
-	<h2>Submission <small>for {{submission.contest.title}}</small></h2>
+	<h2>Submission <small>for <a href="/contests/{{submission.contest.slug}}" class="submission-contest-link">{{submission.contest.title}}</small></a></h2>
 	<p class="text-center contest-submission">Sent by {{submission.a_names}}</p>
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container submission-container">
 	<div class="row">
 		<div class="col-md-4 col-md-push-4 text-center">
 		<dl class="dl dl-contest">
@@ -30,6 +30,12 @@
 			<dd>{{ submission.date_posted }}</dd>
 			<dt>Submission Files</dt>
 			<dd><a href="/media/{{ submission.s_file }}" target="_new">{{ submission.s_file.name }}</a></dd>
+			{% if submission.feedback %}
+			<hr>
+			<dt>Contest Owner's Feedback</dt>
+			<dd>{{ submission.feedback }}</dd>
+			<hr>
+			{% endif %}
 		</dl>
 		</div>
 	</div>
@@ -39,8 +45,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-push-4 text-center">
+		{% if submission.feedback %}
+		<p><a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/feedback" class="btn btn-primary">Edit Feedback</a></p>
+
+		{% else %}
 			<p>Did you like it?</p>
-			<p><a href="" class="btn btn-primary">Then you should Give a Feedback</a></p>
+			<p><a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/feedback" class="btn btn-primary">Then you should Give a Feedback</a></p>
+		{% endif %}
 		</div>
 	</div>
 </div>
@@ -50,7 +61,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-push-4 text-center">
-			<p>You posted this!</p>
 			<a class="btn btn-primary" href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/update">Update Submission</a>
 			<a class="btn btn-danger" href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/delete">Delete Submission</a></p>
 			<p></p>
@@ -58,13 +68,5 @@
 	</div>
 </div>
 {% endif %}
-
-<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-push-4 text-center">
-			<a class="btn btn-link" href="/contests/{{submission.contest.slug}}">Go to Contest Page</a>
-		</div>
-	</div>
-</div>
 
 {% endblock %}
