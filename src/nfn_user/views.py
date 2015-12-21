@@ -96,5 +96,3 @@ def contactView(request):
 		form = ContactForm()
 	return render(request, 'user/contactform.html', {'form':form})
 
-
-

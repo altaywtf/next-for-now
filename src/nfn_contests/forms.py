@@ -31,4 +31,10 @@ class FeedbackForm(forms.ModelForm):
 class WinnerForm(forms.ModelForm):
   class Meta:
     model = Winner
-    fields = ['contest', 'winner']
+    fields = ['winner']
+    labels = {
+      'winner': 'Select the contest winner from your applicants!',
+    }
+    help_texts = {
+            'winner': 'Please note that once you announce the winner, you cannot change it.',
+    }
