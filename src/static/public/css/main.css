@@ -1,6 +1,10 @@
 body{
 }
 
+.base-container{
+	min-height: 50vh;
+}
+
 .navbar{
 	border-radius: 0!important;
 	margin-bottom: 0!important;
@@ -143,7 +147,7 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 	margin-bottom: 15px;
 }
 
-.form-login{
+.panel-user{
 	margin-top: 25px;
 }
 
