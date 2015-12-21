@@ -1,3 +1,6 @@
+body{
+}
+
 .navbar{
 	border-radius: 0!important;
 	margin-bottom: 0!important;
@@ -146,4 +149,26 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 
 .form-login input {
 	text-align: center!important;
+}
+
+.contest-submission {
+	color: white;
+	font-size: 16px;
+}
+
+.dl-contest{
+	font-size: 14px;
+}
+
+.dl-contest dd{
+	margin-bottom: 5px;
+}
+
+.list-group-item-heading{
+	color: #2196F3!important;
+}
+
+.list-group-item-text-details{
+	color: black!important;
+	font-size: 14px;
 }

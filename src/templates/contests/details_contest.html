@@ -18,20 +18,27 @@
 <div class="contest-details">
 	<div class="container">
 		<div class="row">
+			<div class="col-md-1"></div>
 			<div class="col-md-6">
 				<img src="/media/{{contest.image}}" alt="" width="100%">
 			</div>
-			<div class="col-md-6">
-					<p><b>Category:</b> {{ contest.category }}</p>
-					<p><b>Description</b>: {{ contest.description }}</p>
-					<p><b>Details</b>: {{ contest.details }}</p>
-					<p><b>Started</b>: {{ contest.date_started }}</p>
-					<p><b>Deadline</b>: {{ contest.date_deadline }}</p>
+			<div class="col-md-4">
+				<dl class="dl dl-contest">
+					<dt>Category</dt>
+					<dd>{{ contest.category }}</dd>
+					<dt>Description</dt>
+					<dd>{{ contest.description }}</dd>
+					<dt>Details</dt>
+					<dd>{{ contest.details }}</dd>
+					<dt>Started</dt>
+					<dd>{{ contest.date_started }}</dd>
+					<dt>Deadline</dt>
+					<dd>{{ contest.date_deadline }}</dd>
 					{% if contest.is_ongoing == "Finished" %}
-					<p><b>Winner:</b> <code>contest.submission.set_all.filter(is_winner=True)</code></p>
+					<dt>Winner</dt>
+					<dd><code>contest.submission.set_all.filter(is_winner=True)</code></dd>
 					{% endif %}
-
-					<hr>
+				</dl>
 					
 					<!-- If authenticated -->
 					{% if user.is_authenticated %}
@@ -76,7 +83,7 @@
 							<a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a>
 						</p>
 						{% endif %}
-
+			<div class="col-md-1"></div>
 
 			</div>
 		</div>
@@ -88,25 +95,26 @@
 <div class="contest-submissions">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-1"></div>
+			<div class="col-md-6">
 				<!-- Views the submissions -->
+				<hr>
 				<h3>Submissions</h3>
+				<div class="list-group">
+
 				{% if contest.submission_set.exists %}
-				<ul>
+				
 					{% for submission in contest.submission_set.all %}
-					<li>
-						<b>Submitted by</b> {{ submission.applicant }}
-						<br>
-						<b>On</b> {{ submission.date_posted }}
-						<br>
-						<b><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}">View Submission</a></b>
-					</li>
+					<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}" class="list-group-item">
+						<h4 class="list-group-item-heading">{{submission.applicant}}</h4>
+						<p class="list-group-item-text-details">{{submission.s_details}}</p>
+						<p class="list-group-item-text">Posted on {{submission.date_posted}}</p>
+					</a>
 					{% endfor %}
-				</ul>
+				</div>
 
 				{% else %}
 				<p>No submissions yet! Maybe you should pay us a hundred million dollars so we can find u an intern?</p>
-
 				{% endif %}
 			</div>
 		</div>
