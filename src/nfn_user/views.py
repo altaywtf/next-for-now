@@ -45,7 +45,10 @@ def loginView(request):
 			user = authenticate(username=request.POST['username'],password=request.POST['password'])
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect(request.GET["next"])
+				if request.GET:
+					return HttpResponseRedirect(request.GET["next"])
+				else:
+					return HttpResponseRedirect('/')
 			else:
 				return HttpResponseRedirect(request.GET["next"])
 		else:

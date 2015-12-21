@@ -18,28 +18,45 @@
 <div class="contest-details">
 	<div class="container">
 		<div class="row">
+			<div class="col-md-1"></div>
 			<div class="col-md-6">
 				<img src="/media/{{contest.image}}" alt="" width="100%">
-			</div>
-			<div class="col-md-6">
-					<p><b>Category:</b> {{ contest.category }}</p>
-					<p><b>Description</b>: {{ contest.description }}</p>
-					<p><b>Details</b>: {{ contest.details }}</p>
-					<p><b>Started</b>: {{ contest.date_started }}</p>
-					<p><b>Deadline</b>: {{ contest.date_deadline }}</p>
-					{% if contest.is_ongoing == "Finished" %}
-					<p><b>Winner:</b> <code>contest.submission.set_all.filter(is_winner=True)</code></p>
-					{% endif %}
-
+				<div class="contest-details">
 					<hr>
-					
+					<h3>Details</h3>
+					<p>{{ contest.details }}</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<dl class="dl dl-contest">
+					<dt>Category</dt>
+					<dd>{{ contest.category }}</dd>
+					<dt>Description</dt>
+					<dd>{{ contest.description }}</dd>
+					<dt>Award</dt>
+					<dd>{{ contest.award }}</dd>
+					<dt>Started</dt>
+					<dd>{{ contest.date_started }}</dd>
+					<dt>Deadline</dt>
+					<dd>{{ contest.date_deadline }}</dd>
+					{% if contest.is_ongoing == "Finished" %}
+					<dt>Winner</dt>
+					<dd><code>contest.submission.set_all.filter(is_winner=True)</code></dd>
+					{% endif %}
+				</dl>
+				<hr>
 					<!-- If authenticated -->
 					{% if user.is_authenticated %}
 						{% if user.c_owner == contest.owner %}	
 						<p>
 						<p>Hey, Contest Owner!</p>
+						{% if contest.is_ongoing == "Ongoing" %}
 						<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update</a>
 						<a href="/contests/{{contest.slug}}/delete" class="btn btn-danger">Delete</a>
+						{% endif %}
+						{% if contest.is_ongoing == "Finished" %}
+						<a href="" class="btn btn-info">Announce Winner</a>
+						{% endif %}
 						</p>
 						{% endif %}
 						
@@ -50,9 +67,10 @@
 								{% for submission in contest.submission_set.all %}
 									{% if submission.applicant == user %}
 										<p><b>You have posted a submission to this contest on {{ submission.date_posted }}</b></p>
-											<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}" class="btn btn-default">View</a>
+											<p><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}" class="btn btn-default">View</a>
 											<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}/update" class="btn btn-primary">Update</a>
 											<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}/delete" class="btn btn-danger">Delete</a>
+											</p>
 
 									{% else %}
 									<p>You want to post a submission?</p>
@@ -76,43 +94,50 @@
 							<a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a>
 						</p>
 						{% endif %}
+				
+				<hr>
 
-
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- Check if the user logged in is contest's owner -->
+				<!-- Check if the user logged in is contest's owner -->
 {% if user.c_owner == contest.owner %}
 <div class="contest-submissions">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Views the submissions -->
-				<h3>Submissions</h3>
+<!-- Views the submissions -->
+				<h4>Submissions</h4>
+				<div class="list-group">
+
 				{% if contest.submission_set.exists %}
-				<ul>
+				
 					{% for submission in contest.submission_set.all %}
-					<li>
-						<b>Submitted by</b> {{ submission.applicant }}
-						<br>
-						<b>On</b> {{ submission.date_posted }}
-						<br>
-						<b><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}">View Submission</a></b>
-					</li>
+					<div class="list-group">
+						<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}" class="list-group-item">
+						
+						<span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+
+						<span class="icon-text">
+						{{ submission.a_names }}
+						</span>
+
+						<span class="pull-right text-muted">
+						{{ submission.date_posted }}	
+						</span>
+
+						</a>
+					</div>
 					{% endfor %}
-				</ul>
+				</div>
 
 				{% else %}
 				<p>No submissions yet! Maybe you should pay us a hundred million dollars so we can find u an intern?</p>
-
 				{% endif %}
-			</div>
-		</div>
-	</div>
 </div>
 {% endif %}
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - -->
+			<div class="col-md-1"></div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
 {% endblock %}

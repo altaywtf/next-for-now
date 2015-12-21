@@ -1,23 +1,72 @@
-<p><b>Applicant Name(s):</b> {{ submission.a_names }}</p>
-<p><b>Applicant Details:</b> {{ submission.a_details }}</p>
-<p><b>Submission Details:</b> {{ submission.s_details }}</p>
-<p><b>Date Posted: </b>{{ submission.date_posted }}</p>
+{% extends "base.html" %}
 
-<p>{{submission.s_file}}</p>
+{% block title %}{{submission.contest.title}} for {{submission.contest.title}} | Next For Now{% endblock %}
+
+{% block custom-title-color %} 
+.page-title{
+	background: {{ submission.contest.category.hex_code }}!important; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, {{ submission.contest.category.hex_code }} , {{ submission.contest.category.hex_code_2 }})!important;
+	background: linear-gradient(to left, {{ submission.contest.category.hex_code }} , {{ submission.contest.category.hex_code_2 }})!important;
+	}
+{% endblock %}
+
+{% block page-name %}
+	<h2>Submission <small>for <a href="/contests/{{submission.contest.slug}}" class="submission-contest-link">{{submission.contest.title}}</small></a></h2>
+	<p class="text-center contest-submission">Sent by {{submission.a_names}}</p>
+{% endblock %}
+
+{% block content %}
+<div class="container submission-container">
+	<div class="row">
+		<div class="col-md-4 col-md-push-4 text-center">
+		<dl class="dl dl-contest">
+			<dt>Applicant Name(s)</dt>
+			<dd>{{ submission.a_names }}</dd>
+			<dt>Applicant Details</dt>
+			<dd>{{ submission.a_details }}</dd>
+			<dt>Submission Details</dt>
+			<dd>{{ submission.s_details }}</dd>
+			<dt>Date Posted</dt>
+			<dd>{{ submission.date_posted }}</dd>
+			<dt>Submission Files</dt>
+			<dd><a href="/media/{{ submission.s_file }}" target="_new">{{ submission.s_file.name }}</a></dd>
+			{% if submission.feedback %}
+			<hr>
+			<dt>Contest Owner's Feedback</dt>
+			<dd>{{ submission.feedback }}</dd>
+			<hr>
+			{% endif %}
+		</dl>
+		</div>
+	</div>
+</div>
 
 {% if user.c_owner == submission.contest.owner %}
-<hr>
-<p>Did you like it?</p> 
-<p>Then you should <a href="">Give a Feedback</a></p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-push-4 text-center">
+		{% if submission.feedback %}
+		<p><a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/feedback" class="btn btn-primary">Edit Feedback</a></p>
+
+		{% else %}
+			<p>Did you like it?</p>
+			<p><a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/feedback" class="btn btn-primary">Then you should Give a Feedback</a></p>
+		{% endif %}
+		</div>
+	</div>
+</div>
 {% endif %}
 
 {% if user == submission.applicant %}
-<hr>
-<p>You posted this!</p>
-<p>
-<a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/update">Update Submission</a> ||
-<a href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/delete">Delete Submission</a>
-</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-push-4 text-center">
+			<a class="btn btn-primary" href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/update">Update Submission</a>
+			<a class="btn btn-danger" href="/contests/{{submission.contest.slug}}/submissions/{{submission.pk}}/delete">Delete Submission</a></p>
+			<p></p>
+		</div>
+	</div>
+</div>
 {% endif %}
 
-<p><a href="/contests/{{submission.contest.slug}}">Go to Contest Page</a></p>
+{% endblock %}
