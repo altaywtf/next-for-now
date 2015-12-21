@@ -78,4 +78,4 @@ def userChangeView(request):
 				'company_address':cowner.company_address},instance=request.user)
 		else:
 			form = ApplicantChangeForm(instance=request.user)
-	return render(request, 'user/userform.html', {'form':form})
+	return render(request, 'user/userform_edit.html', {'form':form})
