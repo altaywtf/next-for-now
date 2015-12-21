@@ -1,10 +1,11 @@
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import C_Owner
-from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm, COwnerChangeForm, ApplicantChangeForm
+from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm, COwnerChangeForm, ApplicantChangeForm, ContactForm
 
 REDIRECT_PAGE = '/user/signup/cowner/'
 REDIRECT_LOGIN = '/user/login'
@@ -79,3 +80,21 @@ def userChangeView(request):
 		else:
 			form = ApplicantChangeForm(instance=request.user)
 	return render(request, 'user/userform.html', {'form':form})
+
+def contactView(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			recipient_list = []
+			for user in User.objects.all():
+				if user.is_superuser:
+					recipient_list.append(user.email)
+			send_mail(form.cleaned_data['subject'], form.cleaned_data['text'], 'admin@nextfornow.com',
+				recipient_list)
+			return HttpResponseRedirect('/')
+	else:
+		form = ContactForm()
+	return render(request, 'user/contactform.html', {'form':form})
+
+
+

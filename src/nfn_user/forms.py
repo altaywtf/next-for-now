@@ -74,3 +74,7 @@ class ApplicantChangeForm(forms.ModelForm):
 class LoginForm(forms.Form):
 	username = forms.CharField(label='Username')
 	password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class ContactForm(forms.Form):
+	subject = forms.CharField(label='Subject')
+	text = forms.CharField(label='', widget=forms.Textarea(attrs={'rows':5}))
