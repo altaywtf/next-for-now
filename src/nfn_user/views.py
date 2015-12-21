@@ -4,7 +4,7 @@ from django.shortcuts import render, render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import C_Owner
-from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm
+from .forms import COwnerCreationForm, ApplicantCreationForm, LoginForm, COwnerChangeForm, ApplicantChangeForm
 
 REDIRECT_PAGE = '/user/signup/cowner/'
 REDIRECT_LOGIN = '/user/login'
@@ -62,3 +62,20 @@ def loginView(request):
 def logoutView(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
+def userChangeView(request):
+	if request.method == 'POST':
+		if request.user.groups.filter(name='Contest Owner').exists():
+			form = COwnerChangeForm(request.POST, instance=request.user)
+		else:
+			form = ApplicantChangeForm(request.POST, instance=request.user)
+		if form.is_valid():
+			form.save(user=request.user)
+	else:
+		if request.user.groups.filter(name='Contest Owner').exists():
+			cowner = C_Owner.objects.get(profile_model_referance__exact = request.user.id)
+			form = COwnerChangeForm(initial={'website':cowner.website,'company_name':cowner.company_name,
+				'company_address':cowner.company_address},instance=request.user)
+		else:
+			form = ApplicantChangeForm(instance=request.user)
+	return render(request, 'user/userform.html', {'form':form})
