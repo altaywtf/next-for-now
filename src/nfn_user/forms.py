@@ -77,4 +77,4 @@ class LoginForm(forms.Form):
 
 class ContactForm(forms.Form):
 	subject = forms.CharField(label='Subject')
-	text = forms.CharField(label='', widget=forms.Textarea(attrs={'rows':5}))
+	text = forms.CharField(label='Message', widget=forms.Textarea(attrs={'rows':5}))
