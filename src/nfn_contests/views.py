@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 from .models import Category, Contest, Submission, Winner
 from nfn_user.models import C_Owner
@@ -105,6 +106,23 @@ class FilterByOwner(generic.ListView):
 		context['company'] = C_Owner.objects.filter(pk=self.kwargs['company_pk'])
 		return context
 
+# Contest Listing: Search Resulsts
+class FilterBySearch(generic.ListView):
+	template_name = 'contests/index_by_search.html'
+	context_object_name = 'contest_list'
+
+	def get_queryset(self):
+		if self.request:
+			q = self.request.GET['q']
+			return Contest.objects.filter(Q(title__icontains=q) | Q(description__icontains=q) | Q(details__icontains=q)) 
+		else:
+			return Contest.objects.all()
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(FilterBySearch, self).get_context_data(*args, **kwargs)
+		context['contest_category_list'] = Category.objects.all()
+		context['contest_owner_list'] = C_Owner.objects.all()
+		return context
 
 ####################################################################################
 # Contest CRUD

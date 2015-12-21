@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block page-name %}
+	<h2>Search Results</h2>
+	<p class="text-center contest-submission">Displaying results for "{{ request.GET.q }}"</p>
+{% endblock %}
+
+{% block content %}
+	{% include "partials/contest_listing.html" %}
+{% endblock %}

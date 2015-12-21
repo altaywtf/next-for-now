@@ -2,7 +2,6 @@
 	<div class="filters">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3"></div>
 					<!-- Filter by Category-->
 					<div class="col-md-2 col-xs-6">
 						<div class="dropdown">
@@ -53,6 +52,18 @@
 						</div>
 					</div>
 					<!-- Filter by Status-->
+
+					<div class="col-md-6 ">
+						<div class="search-form pull-right">
+							<form class="form-inline" role="search" action="/contests/search/" method="get" >
+								<input type="text" class="form-control" placeholder="Search" name="q">
+								<button type="submit" class="btn btn-link">
+									<span class="glyphicon glyphicon-search" aria-hidden="true">
+									</span>
+								</button>
+							</form>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>

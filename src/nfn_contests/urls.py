@@ -10,6 +10,7 @@ urlpatterns = [
 	url(r'^company/(?P<company_pk>[\w-]+)/$', views.FilterByOwner.as_view(), name='by_owner'),
 	url(r'^ongoing/$', views.FilterByOngoing.as_view(), name='by_ongoing'),
 	url(r'^finished/$', views.FilterByFinished.as_view(), name='by_finished'),
+	url(r'^search/$', views.FilterBySearch.as_view(), name='by_search'),
 	
 	url(r'^create/$', views.ContestCreate.as_view(), name='create_contest'),
 	url(r'^(?P<slug>[\w-]+)/update/$', views.ContestUpdate.as_view(), name='update_contest'),

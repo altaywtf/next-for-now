@@ -49,13 +49,19 @@
 					{% if user.is_authenticated %}
 						{% if user.c_owner == contest.owner %}	
 						<p>
-						<p>Hey, Contest Owner!</p>
 						{% if contest.is_ongoing == "Ongoing" %}
-						<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update</a>
-						<a href="/contests/{{contest.slug}}/delete" class="btn btn-danger">Delete</a>
+						<p>Hey, Contest Owner!</p>
+						<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update Contest</a>
+						<a href="/contests/{{contest.slug}}/delete" class="btn btn-danger">Delete Contest</a>
 						{% endif %}
-						{% if contest.is_ongoing == "Finished" %}
-						<a href="" class="btn btn-info">Announce Winner</a>
+							{% if contest.is_ongoing == "Finished" %}
+								{% if contest.submission_set.exists %}
+								<p>It's time to announce the winner!</p>
+								<a href="/contests/{{contest.slug}}/winner" class="btn btn-info">Announce Winner</a>
+								{% else %}
+								<p>The deadline has come, but there's no submissions. Would you like to extend the contest date?</p>
+								<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update Contest</a>
+							{% endif %}
 						{% endif %}
 						</p>
 						{% endif %}
