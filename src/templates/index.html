@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	
+	{% include "partials/meta.html" %}
+
 	<title>{% block title %}Next For Now{% endblock %}</title>
 
 	{% load staticfiles %}
+	<link rel="Shortcut Icon" href="{% static 'public/img/favicon.png' %}">
+	
 	<link rel="stylesheet" href="{% static 'public/css/main.css' %}">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -18,7 +20,8 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+	
+	<!-- Navbar Position is a little bit different on index page -->
 	<style>
 		.navbar{
 			padding-top: 15px;
