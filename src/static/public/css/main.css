@@ -185,3 +185,20 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 	text-decoration: none;
 	color: #81D4FA;
 }
+
+footer{
+	padding-top: 35px;
+	padding-bottom: 30px;
+	margin-top: 100px;
+	background: #182848;
+	color:white!important;
+}
+
+footer .list-unstyled a{
+	color: white;
+}
+
+footer .list-unstyled a:hover{
+	color: #BBB;
+	text-decoration: none;
+}
