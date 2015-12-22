@@ -20,7 +20,3 @@ class IndexView(generic.ListView):
 # AboutPage
 class AboutView(generic.TemplateView):
 	template_name = 'other/about.html'
-
-# Contact (This will be changed as FormView)
-class ContactView(generic.TemplateView):
-	template_name = 'other/contact.html'

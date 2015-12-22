@@ -39,15 +39,22 @@
 					<dd>{{ contest.date_started }}</dd>
 					<dt>Deadline</dt>
 					<dd>{{ contest.date_deadline }}</dd>
+
 					{% if contest.is_ongoing == "Finished" %}
 					<dt>Winner</dt>
-					<dd><code>contest.submission.set_all.filter(is_winner=True)</code></dd>
+					<dd>{% if contest.winner_set.exists %}
+						{{ contest.winner_set.all.0.winner }}
+						{% else %}
+						Winner is not announced yet!
+						{% endif %}
+					</dd>
 					{% endif %}
+
 				</dl>
-				<hr>
 					<!-- If authenticated -->
 					{% if user.is_authenticated %}
 						{% if user.c_owner == contest.owner %}	
+						<hr>
 						<p>
 						{% if contest.is_ongoing == "Ongoing" %}
 						<p>Hey, Contest Owner!</p>
@@ -101,12 +108,12 @@
 						</p>
 						{% endif %}
 				
-				<hr>
 
 				<!-- Check if the user logged in is contest's owner -->
 {% if user.c_owner == contest.owner %}
 <div class="contest-submissions">
 <!-- Views the submissions -->
+				<hr>
 				<h4>Submissions</h4>
 				<div class="list-group">
 
@@ -132,7 +139,7 @@
 				</div>
 
 				{% else %}
-				<p>No submissions yet! Maybe you should pay us a hundred million dollars so we can find u an intern?</p>
+				<p>Oh, this contest doesn't have any submissions!<br>Maybe you should pay us a hundred million dollars so we can find u an intern?</p>
 				{% endif %}
 </div>
 {% endif %}

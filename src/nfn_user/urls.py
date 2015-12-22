@@ -10,6 +10,5 @@ urlpatterns = [
     url(r'^login/$', views.loginView, name='login'),
     url(r'^logout/$', views.logoutView, name='logout'),
     url(r'^settings/$', views.userChangeView, name='settings'),
-    url(r'^contact/$', views.contactView, name='contact')
 ]
 
