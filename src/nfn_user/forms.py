@@ -22,7 +22,7 @@ class COwnerCreationForm(UserCreationForm):
 		c_owner = C_Owner(profile_model_referance=user, website=self.cleaned_data['website'], 
 			company_name=self.cleaned_data['company_name'], company_address=self.cleaned_data['company_address'])
 		c_owner.save()
-		Group.objects.get(name=C_OWNER_GROUP).user_set.add(user)
+		user.groups.add(Group.objects.get(name=C_OWNER_GROUP))
 		return user, c_owner
 
 class ApplicantCreationForm(UserCreationForm):

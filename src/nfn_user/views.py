@@ -95,4 +95,3 @@ def contactView(request):
 	else:
 		form = ContactForm()
 	return render(request, 'user/contactform.html', {'form':form})
-
