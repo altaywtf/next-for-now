@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'nfn_user',
     'nfn_contests',
     'bootstrap3',
+    'djrill',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -142,9 +143,6 @@ LOGOUT_URL = '/user/logout/'
 LOGIN_REDIRECT_URL = ''
 
 #Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_HOST_POST = ''
+MANDRILL_API_KEY = "ut-e7RRvNJGoOkAWnlTSlQ"
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+DEFAULT_FROM_EMAIL = "you@example.com"
