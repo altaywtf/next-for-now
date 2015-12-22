@@ -49,11 +49,11 @@
     <!-- Row for images -->
     <div class="row">
       <div class="col-xs-12 col-md-6 text-center">
-        <img src="http://nextfornow.com/assets/images/do1.png" class="img-about">
+        <img src="{% static 'public/img/do1.png' %}" class="img-about">
         <p class="p-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae repudiandae odit velit, maxime necessitatibus dolorem voluptas facilis excepturi quidem, quis hic sequi nisi magni. Ipsum tempore, debitis qui libero omnis.</p>
       </div>
       <div class="col-xs-12 col-md-6 text-center">
-        <img src="http://nextfornow.com/assets/images/do2.png" class="img-about">
+        <img src="{% static 'public/img/do2.png' %}" class="img-about">
         <p class="p-white">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quae natus similique minima alias, illo illum nostrum, mollitia quam, culpa error nam provident eum corporis molestias perspiciatis quasi quod. Nemo.
         </p>
@@ -157,12 +157,12 @@
     
     <!-- Row for paragraph -->
     <div class="row">
-      <div class="col-xs-1"></div>
-      <div class="col-xs-10 text-center">
+      <div class="col-xs-1 col-md-4"></div>
+      <div class="col-xs-10 col-md-4 text-center">
          <!-- Signup Form -->
             <div id="mc_embed_signup">
                 <form action="http://nextfornow.us11.list-manage.com/subscribe/post?u=211e7836d065bd0b60d30810e&amp;id=a6b342bfda" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                <input type="email" value="" name="EMAIL" class="required email text-center" id="mce-EMAIL" placeholder="E-Mail Address">
+                <input type="email" value="" name="EMAIL" class="required email text-center" id="mce-EMAIL" placeholder="E-Mail Address" style="width:100%;">
                 <div style="position: absolute; left: -5000px;">
                     <input type="text" name="b_211e7836d065bd0b60d30810e_a6b342bfda" tabindex="-1" value="">
                 </div>
@@ -174,7 +174,7 @@
             </div>
             <!-- /Signup Form -->
       </div>
-      <div class="col-xs-1"></div>
+      <div class="col-xs-1 col-md-4"></div>
     </div>
     <!-- /Row for paragraph -->
 
