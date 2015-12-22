@@ -14,7 +14,7 @@ class ContestForm(forms.ModelForm):
 class SubmissionForm(forms.ModelForm):
   class Meta:
     model = Submission
-    fields = ['a_names', 'a_details', 's_details', 's_file', 'feedback']
+    fields = ['a_names', 'a_details', 's_details', 's_file']
     widgets = {
           'a_details': forms.Textarea(attrs={'rows': 3}),
           's_details': forms.Textarea(attrs={'rows': 3}),
