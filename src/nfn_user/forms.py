@@ -76,5 +76,6 @@ class LoginForm(forms.Form):
 	password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 class ContactForm(forms.Form):
+	email = forms.EmailField(label='E-Mail Address')
 	subject = forms.CharField(label='Subject')
 	text = forms.CharField(label='Message', widget=forms.Textarea(attrs={'rows':5}))

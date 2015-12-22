@@ -89,7 +89,7 @@ def contactView(request):
 			for user in User.objects.all():
 				if user.is_superuser:
 					recipient_list.append(user.email)
-			send_mail(form.cleaned_data['subject'], form.cleaned_data['text'], 'admin@nextfornow.com',
+			send_mail(form.cleaned_data['subject'], form.cleaned_data['text'], form.cleaned_data['email'],
 				recipient_list)
 			return HttpResponseRedirect('/')
 	else:

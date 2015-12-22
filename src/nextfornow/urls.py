@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^user/', include('nfn_user.urls')),
     url(r'^contests/', include('nfn_contests.urls')),
     url(r'^contact/', contactView, name='contact'),
-    url(r'^deneme/', views.denemeView.as_view()),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
