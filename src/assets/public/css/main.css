@@ -1,0 +1,272 @@
+body{
+}
+
+.base-container{
+	min-height: 65vh;
+}
+
+.navbar{
+	border-radius: 0!important;
+	margin-bottom: 0!important;
+}
+
+.navbar-collapse a{
+	font-size: 14px;
+	color: #E3F2FD!important;
+}
+
+.navbar-collapse a:hover{
+	color: white!important;
+}
+
+.navbar-inverse{
+background: #1A3557!important; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #4b6cb7 , #182848)!important; /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.navbar-brand{
+	padding: 10px!important;
+}
+
+.navbar-brand > img{
+	padding: 0;
+	margin: 0 10px;
+}
+
+.nav .dropdown {
+	padding: 15px;
+}
+
+.icon-text{
+	padding-left: 10px!important;
+}
+
+#page-title{
+	margin-bottom: 10px;
+	background: #4183D7; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #1E88E5 , #4183D7); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #1E88E5 , #4183D7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+
+.page-header{
+	background: none;
+	border: none!important;
+	margin: 0 auto!important;	
+}
+
+.page-header h2{
+	font-size: 36px;
+	text-align: center;
+	color: white;
+}
+
+.page-header small{
+	font-size: 18px;
+	color: white;
+	text-transform: uppercase;
+}
+
+.filters{
+	margin-top: 35px;
+}
+
+.listing{
+	margin-top: 35px;
+}
+
+.contest-title{
+	font-size: 16px;
+}
+
+.contest-title a{
+	text-decoration: none!important;
+}
+
+.contest-info {
+	font-size: 13px;
+}
+
+.contest-info a{
+	text-decoration: none!important;
+	color: #1976D2;
+}
+
+.btn-contest-details {
+	margin-top: 10px;
+}
+
+.contest-details{
+	margin-top: 25px;
+}
+
+#home-header{
+	min-height: 100vh;
+	background: url(../img/bg.png) center center no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
+.home-container{
+	display: inline-flex;
+  	align-items: center;
+  	text-align: center;
+  	min-height: 80vh;
+  	color: white!important;
+}
+
+.home-container h1{
+	font-size: 64px;
+	margin-bottom: 48px;
+	color: white;
+}
+
+.home-container p{
+	font-size: 18px;
+	margin-bottom: 48px;
+}
+
+.btn-home{
+	width: 40%;
+}
+
+.signup-container{
+	margin-top: 15px;
+}
+
+.panel-cowner{
+	border-top: 3px solid #6A1B9A!important;
+}
+
+.panel-applicant{
+	border-top: 3px solid #D84315!important;
+}
+
+.panel-talent-hunter{
+	border-top: 3px solid #7CB342!important;
+}
+
+.panel-signup-title{
+	margin-bottom: 15px;
+}
+
+.panel-signup-img{
+	width: 72px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.panel-user{
+	margin-top: 30px;
+}
+
+.form-login input {
+	text-align: center!important;
+}
+
+.contest-submission {
+	color: white;
+	font-size: 16px;
+}
+
+.contest-details, .dl-contest{
+	font-size: 14px;
+}
+
+.dl-contest dd{
+	margin-bottom: 5px;
+}
+
+.list-group-item-heading{
+	color: #2196F3!important;
+}
+
+.list-group-item-text-details{
+	color: black!important;
+	font-size: 14px;
+}
+
+.submission-container{
+	margin-top: 25px;
+}
+
+.submission-contest-link{
+	color: white;
+}
+
+.submission-contest-link:hover{
+	text-decoration: none;
+	color: #81D4FA;
+}
+
+footer{
+	padding-top: 35px;
+	padding-bottom: 30px;
+	margin-top: 35px;
+	background: #182848;
+	color:white!important;
+}
+
+footer .list-unstyled a{
+	color: white;
+}
+
+footer .list-unstyled a:hover{
+	color: #BBB;
+	text-decoration: none;
+}
+
+.pagination{
+	margin-top: 30px;
+}
+
+#notfound{
+	background: black;
+}
+
+#what, #do, #work, #talent, #subscribe {
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.h3-about:after {
+  content: ' ';
+  display: block;
+  border: 1px solid #4183D7;
+  margin: 25px auto 50px auto;
+  width: 15%;
+}
+
+.h3-about {
+  font-size: 36px;
+}
+
+.h3-about-blue {
+  color: #1A3557;
+}
+
+.h3-about-white {
+  color: #F7F7F7;
+}
+
+#do, #talent {
+  background: #1A3557;
+}
+
+.p-white {
+  color: #F7F7F7;
+}
+
+.p-black {
+  color: #141414;
+}
+
+.p-black,
+.p-white {
+  font-size: 16px;
+  line-height: 32px;
+}
+
+.img-about {
+  margin-bottom: 50px;
+}
