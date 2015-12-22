@@ -74,6 +74,7 @@
 		<div class="container">
 			<div class="row">
 				<!-- Contest Card -->
+				{% if contest_list %}
 				{% for contest in contest_list %}
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="panel panel-default">
@@ -98,9 +99,21 @@
 				{% endfor %}
 				<!-- /Contest Card -->
 			</div>
+			{% else %}
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<br>
+					<br>
+					<h4>We couldn't find any contests here!</h4>
+					<br>
+					<br>
+				</div>
+			</div>
+			{% endif %}
 		</div>
 	</div>
 <!-- /Listing -->
 
-
-{% include 'partials/pagination.html' %}
+{% if contest_list %}
+	{% include 'partials/pagination.html' %}
+{% endif %}
