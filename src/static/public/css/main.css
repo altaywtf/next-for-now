@@ -219,3 +219,50 @@ footer .list-unstyled a:hover{
 #notfound{
 	background: black;
 }
+
+#what, #do, #work, #talent, #subscribe {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.h3-about:after {
+  content: ' ';
+  display: block;
+  border: 1px solid #4183D7;
+  margin: 25px auto 75px auto;
+  width: 15%;
+}
+
+.h3-about {
+  font-size: 36px;
+}
+
+.h3-about-blue {
+  color: #1A3557;
+}
+
+.h3-about-white {
+  color: #F7F7F7;
+}
+
+#do, #talent {
+  background: #1A3557;
+}
+
+.p-white {
+  color: #F7F7F7;
+}
+
+.p-black {
+  color: #141414;
+}
+
+.p-black,
+.p-white {
+  font-size: 16px;
+  line-height: 32px;
+}
+
+.img-about {
+  margin-bottom: 50px;
+}
