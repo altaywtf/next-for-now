@@ -20,3 +20,6 @@ class IndexView(generic.ListView):
 # AboutPage
 class AboutView(generic.TemplateView):
 	template_name = 'other/about.html'
+
+class denemeView(generic.TemplateView):
+	template_name = '404.html'

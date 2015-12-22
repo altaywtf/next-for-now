@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block custom-title-color %}
+body{
+    background: #E3F2FD; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #E3F2FD , #1E88E5); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #E3F2FD , #1E88E5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+{% endblock %}
+
+{% block page-name %}
+    <h2>Opps!</h2>
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <h3>[404]</h3>
+                <br>
+                <h4>This is not the page you're looking for!</h4>
+                <br>
+                <a href="/" class="btn btn-default">Save the fish!</a>
+            </div>
+            <div class="col-md-4">
+                <div class="not-found-img pull-right">
+                    {% load staticfiles %}
+                    <img src="{% static 'public/img/404.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+</div>
+
+{% endblock %}

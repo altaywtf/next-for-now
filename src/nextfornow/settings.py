@@ -145,4 +145,4 @@ LOGIN_REDIRECT_URL = ''
 #Email
 MANDRILL_API_KEY = "ut-e7RRvNJGoOkAWnlTSlQ"
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
-DEFAULT_FROM_EMAIL = "you@example.com"
+DEFAULT_FROM_EMAIL = "admin@nextfornow.com"

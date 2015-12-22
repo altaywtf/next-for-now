@@ -21,6 +21,7 @@ class IndexView(generic.ListView):
 	template_name = 'contests/index.html'
 	context_object_name = 'contest_list'
 	allow_empty = True
+	paginate_by = 4
 
 	def get_allow_empty(self):
 		return self.allow_empty
@@ -38,6 +39,7 @@ class IndexView(generic.ListView):
 class FilterByOngoing(generic.ListView):
 	template_name = 'contests/index.html'
 	context_object_name = 'contest_list'
+	paginate_by = 8
 
 	# ¯\_(ツ)_/¯
 	def get_queryset(self):
@@ -58,6 +60,7 @@ class FilterByOngoing(generic.ListView):
 class FilterByFinished(generic.ListView):
 	template_name = 'contests/index.html'
 	context_object_name = 'contest_list'
+	paginate_by = 8
 
 	# ¯\_(ツ)_/¯
 	def get_queryset(self):
@@ -78,6 +81,7 @@ class FilterByFinished(generic.ListView):
 class FilterByCategory(generic.ListView):
 	template_name = 'contests/index_by_category.html'
 	context_object_name = 'contest_list'
+	paginate_by = 8
 
 	def get_queryset(self):
 		self.category = get_object_or_404(Category, slug=self.kwargs['category_slug'])
@@ -94,6 +98,7 @@ class FilterByCategory(generic.ListView):
 class FilterByOwner(generic.ListView):
 	template_name = 'contests/index_by_company.html'
 	context_object_name = 'contest_list'
+	paginate_by = 8
 
 	def get_queryset(self):
 		self.owner = get_object_or_404(C_Owner, pk=self.kwargs['company_pk'])
@@ -110,6 +115,7 @@ class FilterByOwner(generic.ListView):
 class FilterBySearch(generic.ListView):
 	template_name = 'contests/index_by_search.html'
 	context_object_name = 'contest_list'
+	paginate_by = 8
 
 	def get_queryset(self):
 		if self.request:

@@ -11,4 +11,3 @@ urlpatterns = [
     url(r'^logout/$', views.logoutView, name='logout'),
     url(r'^settings/$', views.userChangeView, name='settings'),
 ]
-
