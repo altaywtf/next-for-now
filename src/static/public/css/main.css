@@ -138,12 +138,16 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 	border-top: 3px solid #6A1B9A!important;
 }
 
-.panel-signup-title{
-	margin-bottom: 15px;
-}
-
 .panel-applicant{
 	border-top: 3px solid #D84315!important;
+}
+
+.panel-talent-hunter{
+	border-top: 3px solid #7CB342!important;
+}
+
+.panel-signup-title{
+	margin-bottom: 15px;
 }
 
 .panel-signup-img{
@@ -221,7 +225,7 @@ footer .list-unstyled a:hover{
 }
 
 #what, #do, #work, #talent, #subscribe {
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 100px;
 }
 
@@ -229,7 +233,7 @@ footer .list-unstyled a:hover{
   content: ' ';
   display: block;
   border: 1px solid #4183D7;
-  margin: 25px auto 75px auto;
+  margin: 25px auto 50px auto;
   width: 15%;
 }
 

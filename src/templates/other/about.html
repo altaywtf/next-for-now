@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}About{% endblock %}
 
@@ -24,7 +25,7 @@
     <div class="row">
       <div class="col-xs-1"></div>
       <div class="col-xs-10 text-center">
-        <p class="p-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        <p class="p-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, amet iste accusamus sed, voluptatibus delectus quaerat explicabo quidem qui adipisci, unde velit tempora! Animi facere minus aut ex, consequatur omnis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, amet in odit, atque laborum labore a ab consequuntur fugit distinctio rem cupiditate? Voluptatum animi dolore quam est! Architecto, rem obcaecati.</p>
       </div>
       <div class="col-xs-1"></div>
     </div>
@@ -78,26 +79,39 @@
 
     <!-- Row for cards-->
     <div class="row">
-      <div class="col-md-4 col-xs-12">
-        <div class="panel panel-default">
+      <div class="col-md-4 col-xs-12 text-center">
+
+        <div class="panel panel-default panel-cowner">
           <div class="panel-body">
-            Basic panel example
+            <img src="{% static 'public/img/s_cowner.png' %}" alt="" class="panel-signup-img">
+            <h5 class="panel-signup-title">Contest Owner</h5>
+            <p>Looking for the perfect future employee? You're at the right place!</p>
+            <a href="{% url 'user:signup_cowner' %}" class="btn btn-link">Sign Up</a>
           </div>
-        </div>
       </div>
-      <div class="col-md-4 col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            Basic panel example
-          </div>
-        </div>
+      
       </div>
-      <div class="col-md-4 col-xs-12">
-        <div class="panel panel-default">
+      <div class="col-md-4 col-xs-12 text-center">
+        
+      <div class="panel panel-default panel-applicant">
           <div class="panel-body">
-            Basic panel example
+          <img src="{% static 'public/img/s_applicant.png' %}" alt="" class="panel-signup-img">
+            <h5 class="panel-signup-title">Applicant</h5>
+            <p>Do you want to kickstart your career by using your talents? Come on in!</p>
+            <a href="{% url 'user:signup_applicant' %}" class="btn btn-link">Sign Up</a>
           </div>
-        </div>
+      </div>
+
+      </div>
+      <div class="col-md-4 col-xs-12 text-center">
+       <div class="panel panel-default panel-talent-hunter">
+          <div class="panel-body">
+          <img src="{% static 'public/img/s_talent_hunter.png' %}" alt="" class="panel-signup-img">
+            <h5 class="panel-signup-title">Talent Hunter</h5>
+            <p>Do you want to find hot prospects and great talents for your agency?</p>
+            <a href="{% url 'user:signup_applicant' %}" class="btn btn-link disabled">Coming Soon</a>
+          </div>
+      </div>
       </div>
     </div>
     <!-- /Row for cards -->
@@ -118,12 +132,12 @@
 
     <!-- Row for image -->
     <div class="row">
-      <div class="col-md-3 col-xs-1"></div>
-      <div class="col-xs-10 col-md-6 text-center">
-        <img src="http://nextfornow.com/assets/images/do1.png" class="img-about">
+      <div class="col-md-2 col-xs-1"></div>
+      <div class="col-xs-10 col-md-8 text-center">
+        <img src="{% static 'public/img/talent_hunting.png' %}" class="img-about" width="90px">
          <p class="p-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque fuga, accusantium temporibus, possimus ut velit provident tenetur sed beatae suscipit, ad quibusdam vero eveniet? Voluptates repellendus aperiam labore alias.</p>
       </div>
-      <div class="col-md-3 col-xs-1"></div>
+      <div class="col-md-2 col-xs-1"></div>
     </div>
     <!-- /Row for image -->
 </section>
@@ -145,8 +159,20 @@
     <div class="row">
       <div class="col-xs-1"></div>
       <div class="col-xs-10 text-center">
-        <p class="p-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere placeat officiis, eum aliquam, cum doloremque aliquid iste enim laboriosam! Unde, optio ullam aspernatur? Ab harum temporibus odit labore aperiam, facilis.</p>
-        <p class="p-black">*Buraya form gelecek.*</p>
+         <!-- Signup Form -->
+            <div id="mc_embed_signup">
+                <form action="http://nextfornow.us11.list-manage.com/subscribe/post?u=211e7836d065bd0b60d30810e&amp;id=a6b342bfda" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <input type="email" value="" name="EMAIL" class="required email text-center" id="mce-EMAIL" placeholder="E-Mail Address">
+                <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_211e7836d065bd0b60d30810e_a6b342bfda" tabindex="-1" value="">
+                </div>
+                <div>
+                <br>
+                <input type="submit" value="subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+                </div>
+                </form>
+            </div>
+            <!-- /Signup Form -->
       </div>
       <div class="col-xs-1"></div>
     </div>

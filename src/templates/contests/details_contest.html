@@ -3,7 +3,7 @@
 {% block title %}{{contest.title}} by {{contest.owner}} | Next For Now{% endblock %}
 
 {% block custom-title-color %} 
-.page-title{
+#page-title{
 	background: {{ contest.category.hex_code }}!important; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, {{ contest.category.hex_code }} , {{ contest.category.hex_code_2 }})!important;
 	background: linear-gradient(to left, {{ contest.category.hex_code }} , {{ contest.category.hex_code_2 }})!important;
