@@ -56,11 +56,15 @@
 						{% if user.c_owner == contest.owner %}	
 						<hr>
 						<p>
-						{% if contest.is_ongoing == "Ongoing" %}
-						<p>Hey, Contest Owner!</p>
-						<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update Contest</a>
-						<a href="/contests/{{contest.slug}}/delete" class="btn btn-danger">Delete Contest</a>
-						{% endif %}
+							<!-- Ongoing -->
+							{% if contest.is_ongoing == "Ongoing" %}
+							<p>Hey, Contest Owner!</p>
+							<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update Contest</a>
+							<a href="/contests/{{contest.slug}}/delete" class="btn btn-danger">Delete Contest</a>
+							{% endif %}
+							<!-- /Ongoing -->
+
+							<!-- Finished -->
 							{% if contest.is_ongoing == "Finished" %}
 								{% if contest.submission_set.exists %}
 								<p>It's time to announce the winner!</p>
@@ -68,45 +72,66 @@
 								{% else %}
 								<p>The deadline has come, but there's no submissions. Would you like to extend the contest date?</p>
 								<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update Contest</a>
+								{% endif %}
+							<!-- /Finished -->
 							{% endif %}
-						{% endif %}
 						</p>
 						{% endif %}
 						
-						<!-- & if group is applicant -->	
-						{% ifequal user.groups.all.0.name 'Applicant' %}
-		
-							{% if contest.submission_set.exists %}
-								{% for submission in contest.submission_set.all %}
-									{% if submission.applicant == user %}
-										<p><b>You have posted a submission to this contest on {{ submission.date_posted }}</b></p>
-											<p><a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}" class="btn btn-default">View</a>
-											<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}/update" class="btn btn-primary">Update</a>
-											<a href="/contests/{{contest.slug}}/submissions/{{submission.pk}}/delete" class="btn btn-danger">Delete</a>
+						{% if contest.is_ongoing == "Ongoing" %}
+							
+							<!-- & if group is applicant -->	
+							{% ifequal user.groups.all.0.name 'Applicant' %}
+								
+								<!-- if any submission exist -->
+								{% if submissions %}
+									
+									<!-- if user posted a submision -->
+									{% if request_user_posted %}
+									<p><b>You have posted a submission to this contest on {{ request_user_posted.0.date_posted }}</b></p>
+											<p><a href="/contests/{{contest.slug}}/submissions/{{request_user_posted.0.pk}}" class="btn btn-default">View</a>
+											<a href="/contests/{{contest.slug}}/submissions/{{request_user_posted.0.pk}}/update" class="btn btn-primary">Update</a>
+											<a href="/contests/{{contest.slug}}/submissions/{{request_user_posted.0.pk}}/delete" class="btn btn-danger">Delete</a>
 											</p>
 
+									<!-- if user not posted a submision -->
 									{% else %}
 									<p>You want to post a submission?</p>
 									<p><a href="/contests/{{contest.slug}}/apply" class="btn btn-success">Post a Submission</a></p>
 									{% endif %}
-								{% endfor %}	
 
-						{% else %}
+								<!-- if no submission exist -->
+								{% else %}
+									<p>You want to post a submission?</p>
+									<p><a href="/contests/{{contest.slug}}/apply" class="btn btn-success">Post a Submission</a></p>
+								{% endif %}
+								<!-- if no submission exist -->
 
-						<p>You want to post a submission?</p>
-						<p><a href="/contests/{{contest.slug}}/apply" class="btn btn-success">Post a Submission</a></p>
+							{% endifequal %}
+							<!-- & if group is applicant -->
+
 						{% endif %}
 
-						{% endifequal %}
-
-						<!-- If not authenticated -->
-						{% else %}
-						<p>You want to post a submission?</p>
-						<p>
-							<a href="/user/login/?next={{ request.path }}" class="btn btn-default">Click Here to Log in</a>
-							<a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a>
-						</p>
+						{% if contest.is_ongoing == "Finished" %}
+							<p class="text-danger">Contest is Over!</p>
 						{% endif %}
+
+					<!-- If not authenticated -->
+					{% else %}
+						{% if contest.is_ongoing == "Ongoing" %}
+							<p>You want to post a submission?</p>
+							<p>
+								<a href="/user/login/?next={{ request.path }}" class="btn btn-default">Click Here to Log in</a>
+								<a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a>
+							</p>
+						{% endif %}
+						{% if contest.is_ongoing == "Finished" %}
+							<p class="text-danger">Contest is Over!</p>
+						{% endif %}
+					{% endif %}
+
+					
+
 				
 
 				<!-- Check if the user logged in is contest's owner -->

@@ -155,6 +155,13 @@ class ContestDetail(generic.DetailView):
 	template_name = 'contests/details_contest.html'
 	slug_field = 'slug'
 
+	def get_context_data(self, *args, **kwargs):
+		context = super(ContestDetail, self).get_context_data(*args, **kwargs)
+		context['submissions'] = Submission.objects.filter(contest__slug=self.kwargs['slug'])
+		if self.request.user.is_authenticated():
+			context['request_user_posted'] = Submission.objects.filter(applicant=self.request.user)
+		return context
+
 # Contest Update -accesible only for contest owner-
 class ContestUpdate(LoginRequiredMixin, generic.UpdateView):
 	login_url = '/user/login/'
