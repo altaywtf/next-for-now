@@ -28,6 +28,27 @@
 				</div>
 			</div>
 			<div class="col-md-4">
+			
+			<div class="row">
+			<div class="col-md-9">
+			{% if contest.is_ongoing == "Finished" %}
+				{% if contest.winner_set.exists %}
+				<div class="alert alert-success alert-contest">
+					<dt>Winner</dt>
+					<dd>
+					{{ contest.winner_set.all.0.winner }}
+					</dd>
+					</div>
+				{% else %}
+				<div class="alert alert-danger alert-contest">
+					<dt>This contest is finished</dt>
+					<dd>Winner has not announced yet!</dd>
+				</div>
+				{% endif %}
+			{% endif %}
+			</div>
+			</div>
+
 				<dl class="dl dl-contest">
 					<dt>Category</dt>
 					<dd>{{ contest.category }}</dd>
@@ -40,15 +61,7 @@
 					<dt>Deadline</dt>
 					<dd>{{ contest.date_deadline }}</dd>
 
-					{% if contest.is_ongoing == "Finished" %}
-					<dt>Winner</dt>
-					<dd>{% if contest.winner_set.exists %}
-						{{ contest.winner_set.all.0.winner }}
-						{% else %}
-						Winner is not announced yet!
-						{% endif %}
-					</dd>
-					{% endif %}
+					
 
 				</dl>
 					<!-- If authenticated -->
@@ -67,8 +80,12 @@
 							<!-- Finished -->
 							{% if contest.is_ongoing == "Finished" %}
 								{% if contest.submission_set.exists %}
-								<p>It's time to announce the winner!</p>
-								<a href="/contests/{{contest.slug}}/winner" class="btn btn-info">Announce Winner</a>
+									{% if contest.winner.set_exists %}
+									<p>It's time to announce the winner!</p>
+									<a href="/contests/{{contest.slug}}/winner" class="btn btn-info">Announce Winner</a>
+									{% else %}
+									<a href="/contest/create" class="btn btn-default">Would you like to create another contest?</a></p>
+									{% endif %}
 								{% else %}
 								<p>The deadline has come, but there's no submissions. Would you like to extend the contest date?</p>
 								<a href="/contests/{{contest.slug}}/update" class="btn btn-primary">Update Contest</a>
@@ -112,10 +129,6 @@
 
 						{% endif %}
 
-						{% if contest.is_ongoing == "Finished" %}
-							<p class="text-danger">Contest is Over!</p>
-						{% endif %}
-
 					<!-- If not authenticated -->
 					{% else %}
 						{% if contest.is_ongoing == "Ongoing" %}
@@ -125,9 +138,6 @@
 								<a href="/user/signup/applicant" class="btn btn-primary">Click Here to Sign Up</a>
 							</p>
 						{% endif %}
-						{% if contest.is_ongoing == "Finished" %}
-							<p class="text-danger">Contest is Over!</p>
-						{% endif %}
 					{% endif %}
 
 					
@@ -135,9 +145,9 @@
 				
 
 				<!-- Check if the user logged in is contest's owner -->
-{% if user.c_owner == contest.owner %}
-<div class="contest-submissions">
-<!-- Views the submissions -->
+			{% if user.c_owner == contest.owner %}
+			<div class="contest-submissions">
+			<!-- Views the submissions -->
 				<hr>
 				<h4>Submissions</h4>
 				<div class="list-group">
