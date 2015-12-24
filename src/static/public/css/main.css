@@ -102,7 +102,7 @@ background: linear-gradient(to left, #4b6cb7 , #182848)!important; /* W3C, IE 10
 
 #home-header{
 	min-height: 100vh;
-	background: url(../img/bg.png) center center no-repeat;
+	background: url(../img/bg-optimized.jpg) center center no-repeat;
 	background-size: cover;
 	text-align: center;
 }
