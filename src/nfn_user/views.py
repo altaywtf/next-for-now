@@ -2,6 +2,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import C_Owner
@@ -20,6 +21,7 @@ def cOwnerSignUpView(request):
 		form = COwnerCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
+			messages.success(request, "You have successfully signed up, please log in.")
 			return HttpResponseRedirect(REDIRECT_LOGIN)
 	else:
 		if request.user.is_authenticated():
@@ -32,6 +34,7 @@ def applicantSignUpView(request):
 		form = ApplicantCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
+			messages.success(request, "You have successfully signed up, please log in.")
 			return HttpResponseRedirect(REDIRECT_LOGIN)
 	else:
 		if request.user.is_authenticated():
@@ -72,6 +75,8 @@ def userChangeView(request):
 			form = ApplicantChangeForm(request.POST, instance=request.user)
 		if form.is_valid():
 			form.save(user=request.user)
+			messages.success(request, "Account updated.")
+			return HttpResponseRedirect("/user/settings/")
 	else:
 		if request.user.groups.filter(name='Contest Owner').exists():
 			cowner = C_Owner.objects.get(profile_model_referance__exact = request.user.id)
@@ -91,7 +96,8 @@ def contactView(request):
 					recipient_list.append(user.email)
 			send_mail(form.cleaned_data['subject'], form.cleaned_data['text'], form.cleaned_data['email'],
 				recipient_list)
-			return HttpResponseRedirect('/')
+			messages.success(request, "Message Sent!")
+			return HttpResponseRedirect('/contact/')
 	else:
 		form = ContactForm()
 	return render(request, 'user/contactform.html', {'form':form})
