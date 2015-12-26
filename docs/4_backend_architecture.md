@@ -45,6 +45,7 @@ We are using Django web framework (version 1.9)
 ---
 
 ##URLs
+
 ####Static Pages
 - Home (views.IndexView.as_view())
 - About (views.AboutView.as_view())
@@ -54,23 +55,27 @@ We are using Django web framework (version 1.9)
 - Admin (admin.site.urls)
 
 ####Apps Pages
+
 ######Contests URLs
 - Category ((category_slug), views.FilterByCategory())
 - Company ((company_pk), views.FilterByOwner())
 - Ongoing (views.FilterByOngoing())
 - Finished (views.FilterByFinished())
 - Search (views.FilterBySearch())
+
 **Create (views.ContestCreate())**
 - Update Contests ((slug), views.ContestUpdate())
 - Delete Contests ((slug), views.ContestDelete())
 - View Contests ((slug), views.ContestDetail())
 - Contest Winner ((slug), views.ContestWinner())
+
 **Submissions**
 - Post ((contest_slug), views.SubmissionCreate())
 - Update Submission ((contest_slug)(pk[0-9]), views.SubmissionUpdate())
 - Delete Submission ((contest_slug)(pk[0-9]), views.SubmissionDelete())
 - View Submission ((contest_slug)(pk[0-9]), views.SubmissionDetail())
 - Submission Feedback ((contest_slug)(pk[0-9]), views.FeedbackCreate())
+
 ######User URLs
 - Signup (views.SignUpView)
 - Signup Owner (views.cOwnerSignUpView)
