@@ -47,14 +47,18 @@ def loginView(request):
 		form = LoginForm(request.POST)
 		if form.is_valid():
 			user = authenticate(username=request.POST['username'],password=request.POST['password'])
-			if user.is_active:
-				login(request, user)
-				if request.GET:
-					return HttpResponseRedirect(request.GET["next"])
+			if user is not None:
+				if user.is_active:
+					login(request, user)
+					if request.GET:
+						return HttpResponseRedirect(request.GET["next"])
+					else:
+						return HttpResponseRedirect('/')
 				else:
-					return HttpResponseRedirect('/')
+					return HttpResponseRedirect(request.GET["next"])
 			else:
-				return HttpResponseRedirect(request.GET["next"])
+				messages.error(request, "This user does not exist.")
+				return render_to_response('user/login.html', {'form':form}, context_instance=RequestContext(request))
 		else:
 			return render_to_response('user/login.html', {'form':form}, context_instance=RequestContext(request))
 	else:
@@ -73,6 +77,7 @@ def userChangeView(request):
 			form = COwnerChangeForm(request.POST, instance=request.user)
 		else:
 			form = ApplicantChangeForm(request.POST, instance=request.user)
+
 		if form.is_valid():
 			form.save(user=request.user)
 			messages.success(request, "Account updated.")
