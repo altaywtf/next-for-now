@@ -23,7 +23,7 @@ class Category(models.Model):
 class Contest(models.Model):
 	owner = models.ForeignKey(C_Owner, on_delete=models.CASCADE)
 	title = models.CharField(max_length=60, blank=False, null=False)
-	slug = AutoSlugField(populate_from='title', unique_with=['owner__company_name'])
+	slug = AutoSlugField(populate_from='title', unique_with=['title', 'owner__company_name', 'date_started'])
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	description = models.CharField(max_length=100, blank=False, null=False)
 	details = models.TextField()
