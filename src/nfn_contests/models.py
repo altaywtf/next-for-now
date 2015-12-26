@@ -21,13 +21,13 @@ class Category(models.Model):
 
 class Contest(models.Model):
 	owner = models.ForeignKey(C_Owner, on_delete=models.CASCADE)
-	title = models.CharField(max_length=30, blank=False, null=False)
+	title = models.CharField(max_length=60, blank=False, null=False)
 	slug = AutoSlugField(populate_from='title', unique_with=['owner__company_name'])
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	description = models.CharField(max_length=100, blank=False, null=False)
 	details = models.TextField()
 	image = models.ImageField(upload_to='contests', default='deneme')
-	award = models.CharField(max_length=50)
+	award = models.CharField(max_length=60)
 	date_started = models.DateField('Start Date', blank=False, null=False) 
 	date_deadline = models.DateField('Deadline', blank=False, null=False)
 	is_approved = models.BooleanField('Approved', default=True)

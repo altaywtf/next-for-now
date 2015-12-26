@@ -275,6 +275,11 @@ footer .list-unstyled a:hover{
 	margin-bottom:10px;
 }
 
+.alert-msg-s{
+	margin-top: 0px!important;
+	margin-bottom: 0px!important;
+}
+
 .hvr-float {
   display: inline-block;
   vertical-align: middle;

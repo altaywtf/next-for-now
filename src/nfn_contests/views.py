@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 
 from .models import Category, Contest, Submission, Winner
@@ -134,11 +135,12 @@ class FilterBySearch(generic.ListView):
 # Contest CRUD
 
 # Contest Creation -accessible only for c_owner accounts-
-class ContestCreate(LoginRequiredMixin, generic.CreateView):
+class ContestCreate(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
 	login_url = '/user/login/'
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
+	success_message = "Contest created!"
 
 	def dispatch(self, request, *args, **kwargs):
 		if not self.request.user.groups.filter(name="Contest Owner"):
@@ -163,11 +165,12 @@ class ContestDetail(generic.DetailView):
 		return context
 
 # Contest Update -accesible only for contest owner-
-class ContestUpdate(LoginRequiredMixin, generic.UpdateView):
+class ContestUpdate(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
 	login_url = '/user/login/'
 	form_class = ContestForm
 	model = Contest
 	template_name = 'contests/_form_contest.html'
+	success_message = "Contest updated!"
 
 	def get_object(self, *args, **kwargs):
 		obj = super(ContestUpdate, self).get_object(*args, **kwargs)
@@ -197,11 +200,12 @@ class ContestDelete(LoginRequiredMixin, generic.DeleteView):
 # Submission CRUD
 
 # Submission Creation
-class SubmissionCreate(LoginRequiredMixin, generic.CreateView):
+class SubmissionCreate(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
 	login_url = '/user/login/'
 	form_class = SubmissionForm
 	model = Submission
 	template_name = 'contests/_form_submission.html'
+	success_message = "Submission posted!"
 
 	def get(self, request, *args, **kwargs):
 		self.contest = get_object_or_404(Contest, slug=self.kwargs['contest_slug'])
@@ -243,11 +247,12 @@ class SubmissionDetail(LoginRequiredMixin, generic.DetailView):
 		return obj
 
 # Submission Update
-class SubmissionUpdate(LoginRequiredMixin, generic.UpdateView):
+class SubmissionUpdate(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
 	login_url = '/user/login/'
 	form_class = SubmissionForm
 	model = Submission
 	template_name = 'contests/_form_submission.html'
+	success_message = "Submission updated!"
 
 	# Check the submission
 	def get(self, request, *args, **kwargs):
@@ -265,10 +270,11 @@ class SubmissionUpdate(LoginRequiredMixin, generic.UpdateView):
 		return super(SubmissionUpdate, self).form_valid(form)
 		
 # Submission Delete
-class SubmissionDelete(LoginRequiredMixin, generic.DeleteView):
+class SubmissionDelete(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
 	login_url = '/user/login/'
 	model = Submission
 	template_name = 'contests/_form_contest_delete.html'
+	success_message = "Submission deleted!"
 	success_url = reverse_lazy('contests:index')
 
 	# Check the submission
@@ -286,11 +292,12 @@ class SubmissionDelete(LoginRequiredMixin, generic.DeleteView):
 ####################################################################################
 
 # Submission Feedback
-class FeedbackCreate(LoginRequiredMixin, generic.UpdateView):
+class FeedbackCreate(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
 	login_url = '/user/login/'
 	model = Submission
 	form_class = FeedbackForm
 	template_name = 'contests/_form_submission_feedback.html'
+	success_message = "Feedback given!"
 
 	# Check the contest
 	def get(self, request, *args, **kwargs):
@@ -309,13 +316,13 @@ class FeedbackCreate(LoginRequiredMixin, generic.UpdateView):
 	def form_valid(self, form):
 		return super(FeedbackCreate, self).form_valid(form)
 
-
 # Winner Form
-class ContestWinner(LoginRequiredMixin, generic.CreateView):
+class ContestWinner(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
 	login_url = '/user/login/'
 	model = Winner
 	form_class = WinnerForm
 	template_name = 'contests/_form_contest_winner.html'
+	success_message = "Hooraay! Winner announced!"
 
 	# Check the contest
 	def get(self, request, *args, **kwargs):

@@ -6,6 +6,27 @@
 
 {% block content %}
 {% load bootstrap3 %}
+{% if messages %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="alert alert-success alert-dismissible alert-msg-s" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<ul class="messages list-unstyled">
+				    	{% for message in messages %}
+				    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+				        	{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+				        	<strong>{{ message }}</strong>
+				    	</li>
+				    	{% endfor %}
+					</ul>
+			</div></div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+{% endif %}
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-4"></div>
@@ -14,18 +35,6 @@
 <div class="panel panel-default form-login panel-user">
   <div class="panel-heading text-center">
   <h4>Login</h4>
-  </div>
-  <div class ="">
-  	{% if messages %}
-	<ul class="messages">
-    	{% for message in messages %}
-    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        	{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-        	{{ message }}
-    	</li>
-    	{% endfor %}
-	</ul>
-	{% endif %}
   </div>
   <div class="panel-body text-center">
     <form method="post" action"">

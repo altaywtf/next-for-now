@@ -16,6 +16,27 @@
 {% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="alert alert-success alert-dismissible alert-msg-s" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<ul class="messages list-unstyled">
+				    	{% for message in messages %}
+				    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+				        	{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+				        	<strong>{{ message }}</strong>
+				    	</li>
+				    	{% endfor %}
+					</ul>
+			</div></div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+{% endif %}
+
 <div class="container submission-container">
 	<div class="row">
 		<div class="col-md-4 col-md-push-4 text-center">
@@ -29,7 +50,7 @@
 			<dt>Date Posted</dt>
 			<dd>{{ submission.date_posted }}</dd>
 			<dt>Submission Files</dt>
-			<dd><a href="/media/{{ submission.s_file }}" target="_new">{{ submission.s_file.name }}</a></dd>
+			<dd><a href="/media/{{ submission.s_file }}" target="_new">{{ submission.s_file.nameÂ }}</a></dd>
 			{% if submission.feedback %}
 			<hr>
 			<dt>Contest Owner's Feedback</dt>

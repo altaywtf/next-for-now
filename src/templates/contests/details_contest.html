@@ -15,6 +15,28 @@
 {% endblock %}
 
 {% block content %}
+
+{% if messages %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="alert alert-success alert-dismissible alert-msg-s" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<ul class="messages list-unstyled">
+				    	{% for message in messages %}
+				    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+				        	{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+				        	<strong>{{ message }}</strong>
+				    	</li>
+				    	{% endfor %}
+					</ul>
+			</div></div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+{% endif %}
+
 <div class="contest-details">
 	<div class="container">
 		<div class="row">
@@ -55,14 +77,11 @@
 					<dt>Description</dt>
 					<dd>{{ contest.description }}</dd>
 					<dt>Award</dt>
-					<dd>{{ contest.award }}</dd>
+					<dd>{{Â contest.award }}</dd>
 					<dt>Started</dt>
 					<dd>{{ contest.date_started }}</dd>
 					<dt>Deadline</dt>
 					<dd>{{ contest.date_deadline }}</dd>
-
-					
-
 				</dl>
 					<!-- If authenticated -->
 					{% if user.is_authenticated %}
@@ -80,11 +99,11 @@
 							<!-- Finished -->
 							{% if contest.is_ongoing == "Finished" %}
 								{% if contest.submission_set.exists %}
-									{% if contest.winner.set_exists %}
+									{% if contest.winner_set.exists %}
+									<a href="/contest/create" class="btn btn-default">Would you like to create another contest?</a>
+									{% else %}
 									<p>It's time to announce the winner!</p>
 									<a href="/contests/{{contest.slug}}/winner" class="btn btn-info">Announce Winner</a>
-									{% else %}
-									<a href="/contest/create" class="btn btn-default">Would you like to create another contest?</a></p>
 									{% endif %}
 								{% else %}
 								<p>The deadline has come, but there's no submissions. Would you like to extend the contest date?</p>
@@ -144,7 +163,7 @@
 
 				
 
-				<!-- Check if the user logged in is contest's owner -->
+			<!-- Check if the user logged in is contest's owner -->
 			{% if user.c_owner == contest.owner %}
 			<div class="contest-submissions">
 			<!-- Views the submissions -->
