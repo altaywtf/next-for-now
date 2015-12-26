@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
@@ -188,12 +189,18 @@ class ContestDelete(LoginRequiredMixin, generic.DeleteView):
 	model = Contest
 	template_name = 'contests/_form_contest_delete.html'
 	success_url = reverse_lazy('contests:index')
+	success_message = "Contest deleted."
 
 	def get_object(self, *args, **kwargs):
 		obj = super(ContestDelete, self).get_object(*args, **kwargs)
 		if not obj.owner == self.request.user.c_owner:
 			raise Http404
 		return obj
+
+	# Delete Success Message
+	def delete(self, request, *args, **kwargs): 
+		messages.success(self.request, self.success_message) 
+		return super(ContestDelete, self).delete(request, *args, **kwargs)
 
 
 ####################################################################################
@@ -270,7 +277,7 @@ class SubmissionUpdate(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateVi
 		return super(SubmissionUpdate, self).form_valid(form)
 		
 # Submission Delete
-class SubmissionDelete(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
+class SubmissionDelete(LoginRequiredMixin, generic.DeleteView):
 	login_url = '/user/login/'
 	model = Submission
 	template_name = 'contests/_form_contest_delete.html'
@@ -288,6 +295,11 @@ class SubmissionDelete(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteVi
 		if not obj.applicant == self.request.user:
 			raise Http404
 		return obj
+
+	# Delete Success Message
+	def delete(self, request, *args, **kwargs): 
+		messages.success(self.request, self.success_message) 
+		return super(SubmissionDelete, self).delete(request, *args, **kwargs)
 
 ####################################################################################
 
