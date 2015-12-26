@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from autoslug import AutoSlugField
 
@@ -28,12 +29,16 @@ class Contest(models.Model):
 	details = models.TextField()
 	image = models.ImageField(upload_to='contests', default='deneme')
 	award = models.CharField(max_length=60)
-	date_started = models.DateField('Start Date', blank=False, null=False) 
-	date_deadline = models.DateField('Deadline', blank=False, null=False)
+	date_started = models.DateField('Start Date', blank=False, null=False, default=datetime.date.today) 
+	date_deadline = models.DateField('Deadline', blank=False, null=False, default=datetime.date.today)
 	is_approved = models.BooleanField('Approved', default=True)
 
 	def get_absolute_url(self):
 		return reverse('contests:view_contest', kwargs={'slug': self.slug})
+
+	def clean(self):
+		if self.date_started > self.date_deadline:
+			raise ValidationError('Start date cannot precede deadline, please check the dates!')
 
 	@property
 	def is_ongoing(self):
