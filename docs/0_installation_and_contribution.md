@@ -19,8 +19,8 @@
 - $ git clone https://github.com/zebrasinpyjamas/nextfornow.git
 - *It doesn't matter where you clone it. Just don't forget to activate your virtualenv when you are working on the project.*
 
-####Go into src (source code) folder.
-- $ cd nextfornow/src
+####Go into project folder.
+- $ cd nextfornow
 
 ####Install project requirements.
 - $ pip insall -r requirements.txt

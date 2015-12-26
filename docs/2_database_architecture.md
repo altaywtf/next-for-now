@@ -53,8 +53,10 @@ Existing Django models for users will be used. Additional fields for users will 
 - files -> uploaded by Applicant
 - date_posted
 - feedback -> filled by Contest Owner (TextField)
-- is_winner -> filled by Contest Owner (Boolean)
 
+###Winners
+- contest -> ForeignKey(Contests)
+- submission -> ForeignKey(Submissions)
 
 ---
 

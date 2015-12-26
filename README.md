@@ -1,4 +1,4 @@
-![Logo](docs/assets/img/0.png)
+[![Logo](docs/assets/img/0.png)](http://nextfornow.com)
 
 ---
 

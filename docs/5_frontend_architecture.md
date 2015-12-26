@@ -1,5 +1,5 @@
 #Style Guide and Frontend Architecture
-This document contains detailed information about the style guide and frontend architecture of Next For Now.
+This document contains information about the style guide and frontend architecture of Next For Now.
 
 ---
 ##Branding and Style Guide
@@ -13,13 +13,10 @@ This document contains detailed information about the style guide and frontend a
 ---
 
 ##External Libraries
+[Twitter Bootstrap](http://getbootstrap.com/)
 
----
+[Bootstrap Paper Color Scheme](https://bootswatch.com/paper/)
 
-##Workflow Tools
-
----
-
-##Components & Classes
+[JQuery](https://jquery.com/)
 
 ---

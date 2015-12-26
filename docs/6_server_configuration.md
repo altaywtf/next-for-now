@@ -13,6 +13,7 @@ ubuntu 14.04
 ##Web Server
 ####nginx Configuration
 
+<pre>
 server {
 	listen 80;
 	server_name nextfornow.com;
@@ -34,7 +35,7 @@ location /media/ {
 	alias /home/altay/
 }
 
-Cache Assets
+# Cache Assets
 
 location ~* /.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
 	expires 1M;
@@ -42,7 +43,7 @@ location ~* /.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
 	add_header Cache-Control "public";
 }
 
-Cache CSS and Javascript
+# Cache CSS and Javascript
 
 location ~*/.(?:css|js)$ {
 	expires 1M;
@@ -50,6 +51,7 @@ location ~*/.(?:css|js)$ {
 	add_header Cache_Control "public";
 }
 
+</pre>
 
 ---
 
@@ -58,7 +60,7 @@ MySQL
 
 ---
 
-##Server-Side Software
+##Web Application
 Django web framework, written with Python.
 
 ---
