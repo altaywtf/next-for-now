@@ -150,11 +150,12 @@
 					<li><a href="/about">About</a></li>
 					<li><a href="{% url 'contests:index' %}">Contests</a></li>
 					<li><a href="/contact">Contact</a></li>
-					<li class="visible-xs">
+					
+					<div class="visible-xs">
 					{% if user.is_authenticated %}
 
 					{% if user.is_superuser %}
-					<li class="dropdown">
+					<li class="dropdown user-responsive">
 						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.username}}</span>
 						</button>
@@ -182,7 +183,7 @@
 					{% endif %}
 
 					{% ifequal user.groups.all.0.name 'Contest Owner' %}
-					<li class="dropdown">
+					<li class="dropdown user-responsive">
 						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.c_owner.company_name}}</span>
 						</button>
@@ -226,7 +227,7 @@
 					{% endifequal %}
 
 					{% ifequal user.groups.all.0.name 'Applicant' %}
-					<li class="dropdown">
+					<li class="dropdown user-responsive">
 						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.username}}</span>
 						</button>
@@ -274,8 +275,8 @@
 					<a class="btn btn-primary navbar-btn" href="/user/login/?next={{ request.path }}">Log in</a>
 					<a class="btn btn-primary navbar-btn" href="/user/signup/">Sign Up</a>
 					{% endif %}
+					</div>
 
-					</li>
 				</ul>
 			</div>
 		</div>

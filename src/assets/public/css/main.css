@@ -331,6 +331,10 @@ footer .list-unstyled a:hover{
     	margin-left: auto;
     	margin-right: auto;
     }
+
+    .user-responsive li{
+    	text-align: center!important;
+    }
 }
 
 @media (max-width: 768px){
