@@ -25,12 +25,16 @@
 			{% csrf_token %}
 			<input type="hidden" name="next" value="{{next}}">
 			{% bootstrap_form form %}
-			<a href="{% url 'user:password_change' %}">Change password</a>
 			{% buttons %}
 	        <button type="submit" class="btn btn-success btn-block">Submit</button>
 	        {% endbuttons %}
 		</form>
   </div>
+
+  <div class="panel-footer text-center">
+      		<a href="{% url 'user:password_change' %}" class="btn btn-block btn-primary">Click here to change your password</a>
+
+    </div>
 
 </div>
 
