@@ -8,7 +8,7 @@
 
 			<!-- I don't want it apart of the collapsible portion -->
 			<div class="navbar-header pull-right">
-				<ul class="nav navbar-nav pull-left">
+				<ul class="nav navbar-nav pull-left hidden-xs">
 					
 					{% if user.is_authenticated %}
 
@@ -150,6 +150,132 @@
 					<li><a href="/about">About</a></li>
 					<li><a href="{% url 'contests:index' %}">Contests</a></li>
 					<li><a href="/contact">Contact</a></li>
+					<li class="visible-xs">
+					{% if user.is_authenticated %}
+
+					{% if user.is_superuser %}
+					<li class="dropdown">
+						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.username}}</span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#"><b>User Type: </b>Admin</a></li>
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="/admin">
+									<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+									<span class="icon-text">Admin Panel</span>
+								</a>
+							</li>
+
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'user:logout' %}">
+									<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 
+									<span class="icon-text">Logout</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					{% endif %}
+
+					{% ifequal user.groups.all.0.name 'Contest Owner' %}
+					<li class="dropdown">
+						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.c_owner.company_name}}</span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#"><b>User Type: </b>Contest Owner</a></li>
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'contests:create_contest' %}">
+									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+									<span class="icon-text">Create New Contest</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="{% url 'contests:by_owner' user.c_owner.pk %}">
+									<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+									<span class="icon-text">View My Contests</span>
+								</a>
+							</li>
+
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'user:settings' %}">
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 
+									<span class="icon-text">Account Settings</span>
+								</a>
+							</li>
+
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'user:logout' %}">
+									<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 
+									<span class="icon-text">Logout</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					{% endifequal %}
+
+					{% ifequal user.groups.all.0.name 'Applicant' %}
+					<li class="dropdown">
+						<button class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="icon-text">{{user.username}}</span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#"><b>User Type: </b>Applicant</a></li>
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'contests:index' %}">
+									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+									<span class="icon-text">View Contests</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="">
+									<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+									<span class="icon-text">View My Submissions</span>
+								</a>
+							</li>
+
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'user:settings' %}">
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 
+									<span class="icon-text">Account Settings</span>
+								</a>
+							</li>
+
+							<li role="separator" class="divider"></li>
+
+							<li>
+								<a href="{% url 'user:logout' %}">
+									<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 
+									<span class="icon-text">Logout</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					{% endifequal %}
+
+
+					{% else %}
+					<a class="btn btn-primary navbar-btn" href="/user/login/?next={{ request.path }}">Log in</a>
+					<a class="btn btn-primary navbar-btn" href="/user/signup/">Sign Up</a>
+					{% endif %}
+
+					</li>
 				</ul>
 			</div>
 		</div>
