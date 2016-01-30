@@ -1,4 +1,6 @@
-#Dummy Data & Users for Demo Usage
+#Users for Demo Usage
+
+For online version: http://nextfornow.com/
 
 ##Applicant
 - username: kilichandemir
