@@ -1,7 +1,7 @@
 #Next For Now
 
 ##About
-Next For Now is a web platform which aims to connect connect the creative college students, fresh graduates and internship candidates to the prominent organizations of industry they want to be a part of.
+Next For Now is a web platform which aims to connect creative college students, fresh graduates and internship candidates to the prominent organizations of industry they want to be a part of.
 
 It was initially developed for the term project of CMPE 283 - Web Services Design course held in 2015/16 Fall (İstanbul Bilgi University) but the main idea dates back to summer of 2015 and it is not directly related with the developers.
 
@@ -25,4 +25,4 @@ This repository contains the source code and live version is there: http://nextf
 [07. Dummy Data & Users for Demo Usage](docs/7_dummy_demo.md)
 
 ##License
-Copyright (c) 2015, [Licensed under the Apache License.](LICENSE)
+Copyright (c) 2015, [licensed under the Apache License.](LICENSE)
