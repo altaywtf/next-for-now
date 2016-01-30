@@ -57,7 +57,7 @@ def loginView(request):
 				else:
 					return HttpResponseRedirect(request.GET["next"])
 			else:
-				messages.error(request, "TWrong username or password")
+				messages.error(request, "Wrong username or password")
 				return render_to_response('user/login.html', {'form':form}, context_instance=RequestContext(request))
 		else:
 			return render_to_response('user/login.html', {'form':form}, context_instance=RequestContext(request))

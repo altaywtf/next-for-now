@@ -1,9 +1,4 @@
 #Database Architecture
-This document contains the database architecture & schemas of Next For Now.
-
-
----
-
 
 ##Database Tables for Users
 Existing Django models for users will be used. Additional fields for users will be added via profile models.

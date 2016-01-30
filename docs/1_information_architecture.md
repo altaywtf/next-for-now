@@ -1,12 +1,6 @@
 #Information Architecture
-This document contains the information architecture of Next For Now.
-
-
----
-
 
 ##User Types & Authorities
-
 ###Content Editors
 Content editors play a key role in the workflow of Next For Now. When a new contest has created, it needs to be approved by a content editor. They are also obligated to check the accuracy of the contests and submissions. If there is a misleading information about a contest or submission, content editors can delete or update them.
 

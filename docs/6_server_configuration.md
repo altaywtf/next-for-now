@@ -1,7 +1,6 @@
 #Server Configuration
-This document contains detailed information about the server configuration of Next For Now.
 
-We are planning to use LEMP (Linux - nginx - MySQL - Python) stack on Next For Now.
+We are using LEMP (Linux - nginx - MySQL - Python) stack on Next For Now.
 
 ---
 

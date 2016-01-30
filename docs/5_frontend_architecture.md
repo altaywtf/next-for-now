@@ -1,7 +1,5 @@
 #Style Guide and Frontend Architecture
-This document contains information about the style guide and frontend architecture of Next For Now.
 
----
 ##Branding and Style Guide
 ###Logo
 ![alt text](assets/img/logo-dark.png "Logo on Dark Background")
@@ -13,10 +11,8 @@ This document contains information about the style guide and frontend architectu
 ---
 
 ##External Libraries
-[Twitter Bootstrap](http://getbootstrap.com/)
-
-[Bootstrap Paper Color Scheme](https://bootswatch.com/paper/)
-
-[JQuery](https://jquery.com/)
+- [Twitter Bootstrap](http://getbootstrap.com/)
+- [Bootstrap Paper Color Scheme](https://bootswatch.com/paper/)
+- [JQuery](https://jquery.com/)
 
 ---

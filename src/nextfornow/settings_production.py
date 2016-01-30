@@ -15,7 +15,6 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -70,7 +69,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nextfornow',
         'USER': 'nextfornowuser',
-        'PASSWORD': 'nn1213NN',
+        'PASSWORD': 'nn1212NN',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -101,7 +100,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -118,7 +116,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-
 #Login
 LOGIN_URL = '/user/login/'
 LOGOUT_URL = '/user/logout/'
@@ -128,5 +125,3 @@ LOGIN_REDIRECT_URL = ''
 MANDRILL_API_KEY = "ut-e7RRvNJGoOkAWnlTSlQ"
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 DEFAULT_FROM_EMAIL = "admin@nextfornow.com"
-
-

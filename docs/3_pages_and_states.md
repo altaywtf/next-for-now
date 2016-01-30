@@ -1,9 +1,4 @@
 #Pages and States
-This document contains the information about pages and their states for possible conditions.
-
-
----
-
 
 ##Home Page
 Visible for all viewers with the same condition.
