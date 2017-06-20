@@ -1,24 +1,24 @@
-#Pages and States
+# Pages and States
 
-##Home Page
+## Home Page
 Visible for all viewers with the same condition.
 
-##About
+## About
 Visible for all viewers with the same condition. [May be precoded pure html.](http://nextfornow.com)
 
-##Contact
+## Contact
 Visible for all viewers with the same condition. Includes a basic contact form.
 
-##Sign Up 
+## Sign Up 
 Visible for all viewers with two membership options.
 - Sign Up - Form
 	- **Case 1**: A form to have contest owner account.
 	- **Case 2**: Another form to have an applicant account.
 
-##Log In
+## Log In
 Since we will be gathering user credentials with the same format, I think we can use same login form for all users. System should check the user type and render the templates according to it.
 
-##Show Contests
+## Show Contests
 This page contains a search bar and filtering options.
 
 - **Case 1**: Visible for all viewers with optional filters.
@@ -33,7 +33,7 @@ This page contains a search bar and filtering options.
 - **Case 3**: Same template, but it renders with respect to the applicants.
 	- Example: show all of the contests an applicant has posted a submission.
 
-##Show an Individial Contest
+## Show an Individial Contest
 - **Ongoing Contest**
 	- **Case 1**: Visible for non-login users (public). Number of submissions is visible. "Post a submission" button will lead them to the [sign up form.](#sign-up-main)
 	- **Case 2**: This is for contest owners. They will be able to see the submissions on this page. They can also have additional buttons like "update contest".
@@ -43,7 +43,7 @@ This page contains a search bar and filtering options.
 	- **Case 2**: For contest owners. 
 	- **Case 3**: For applicants. Each applicant can see all the submissions if the contest has finished.
 
-##Account Settings
+## Account Settings
 - **Case 1**: For companies; lists the information provided on sign up process. They can update their parameters from here.
 - **Case 2**: For applicants; same as the companies.
 
@@ -51,12 +51,9 @@ This page contains a search bar and filtering options.
 ---
 
 
-##Partials
-###Navbar
+## Partials
+### Navbar
 Changes stance with respect to login/logout operations.
 
-###Footer
+### Footer
 Same for all pages, includes a sitemap and meta description.
-
-
----
