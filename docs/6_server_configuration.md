@@ -1,16 +1,16 @@
-#Server Configuration
+# Server Configuration
 
 We are using LEMP (Linux - nginx - MySQL - Python) stack on Next For Now.
 
 ---
 
-##Operating System
+## Operating System
 ubuntu 14.04
 
 ---
 
-##Web Server
-####nginx Configuration
+## Web Server
+### nginx Configuration
 
 <pre>
 server {
@@ -54,12 +54,11 @@ location ~*/.(?:css|js)$ {
 
 ---
 
-##Database Server
+## Database Server
 MySQL
 
 ---
 
-##Web Application
+## Web Application
 Django web framework, written with Python.
 
----
