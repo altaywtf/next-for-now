@@ -1,15 +1,15 @@
-#Users for Demo Usage
+# Users for Demo Usage
 
 For online version: http://nextfornow.com/
 
-##Applicant
+## Applicant
 - username: kilichandemir
 - password: aa1212AA
 
-##Contest Owner
+## Contest Owner
 - username: graphichq
 - password: aa1212aa
 
-##Administrator
+## Administrator
 - username: dummyadmin
 - password: aa1212aa
