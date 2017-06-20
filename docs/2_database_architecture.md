@@ -1,14 +1,14 @@
-#Database Architecture
+# Database Architecture
 
-##Database Tables for Users
+## Database Tables for Users
 Existing Django models for users will be used. Additional fields for users will be added via profile models.
 
-###Admins
+### Admins
 - id
 - username (e-mail)
 - password
 
-###Contest Owners
+### Contest Owners
 - id
 - username (e-mail)
 - password
@@ -16,7 +16,7 @@ Existing Django models for users will be used. Additional fields for users will 
 - company address
 - website
 
-###Applicants
+### Applicants
 - id
 - username (e-mail)
 - password
@@ -25,8 +25,8 @@ Existing Django models for users will be used. Additional fields for users will 
 ---
 
 
-##Database Tables for Contents
-###Contests
+## Database Tables for Contents
+### Contests
 - owner -> ForeignKey(C_Owner)
 - title
 - category -> Selected from a list of Categories
@@ -39,7 +39,7 @@ Existing Django models for users will be used. Additional fields for users will 
 - date_start
 - date_deadline
 
-###Submissions
+### Submissions
 - contest -> ForeignKey(Contests)
 - applicant -> ForeignKey(Applicants)
 - applicant name(s) -> filled by Applicant
@@ -49,13 +49,12 @@ Existing Django models for users will be used. Additional fields for users will 
 - date_posted
 - feedback -> filled by Contest Owner (TextField)
 
-###Winners
+### Winners
 - contest -> ForeignKey(Contests)
 - submission -> ForeignKey(Submissions)
 
 ---
 
-
-###Schema Drawings
+### Schema Drawings
 
 ![alt text](assets/img/NextForNowER.png "E.R Diagram")
