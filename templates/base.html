@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 	{% include "partials/meta.html" %}
-	
+
 	<title>{% block title %}Next For Now{% endblock %}</title>
 
 	{% load staticfiles %}
   <link rel="Shortcut Icon" href="{% static 'public/img/favicon.png' %}">
 
 	<!-- Bootstrap With Paper Theme -->
-	<link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css">
 
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="{% static 'public/css/main.min.css' %}">
+	<link rel="stylesheet" href="{% static 'public/css/main.css' %}">
 
 	<!-- For Custom Title Backgrounds -->
 	<style>{% block custom-title-color %}{% endblock %}</style>
@@ -23,7 +23,7 @@
 	<header>
 		{% include "partials/navbar.html" %}
 	</header>
-	
+
 	<section id="page-title">
 	<div class="container">
 		<div class="row">
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	</section>
-	
+
 	<div class="base-container">
 	{% block content %}
 	{% endblock %}
